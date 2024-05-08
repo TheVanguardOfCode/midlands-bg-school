@@ -1,1 +1,3 @@
 # midlands-bg-school
+
+Contributors
