@@ -18,6 +18,7 @@ Replace <your-github-username>!
     cd <project/directory>
 ```
 4 Before you make any changes, keep your fork in sync to avoid merge conflicts.
+! - RUN THE FIRST COMMAND ONLY ONCE - !
 ```bash
     git remote add upstream git@github.com:TheVanguardOfCode/midlands-bg-school.git
     git pull upstream main
@@ -35,13 +36,13 @@ Replace <your-github-username>!
 
 6 On your computer, open your text editor, and add your name to the README.md file.
 ```bash
-    -[@M<your-github-username>](https://github.com/<your-github-username>/)
+    -[@<your-github-username>](https://github.com/<your-github-username>/)
 ```
 
 7 Add the changes with git add, git commit (write a good commit message, if possible).
 ```bash
     git add README.md
-    git commit -m "your-message>"
+    git commit -m "<your-message>"
 ```
 
 8 Push your changes to your repository.
