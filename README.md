@@ -42,7 +42,7 @@ Replace <your-github-username>!
 7 Add the changes with git add, git commit (write a good commit message, if possible).
 ```bash
     git add README.md
-    git commit -m "your-message>"
+    git commit -m "<your-message>"
 ```
 
 8 Push your changes to your repository.
