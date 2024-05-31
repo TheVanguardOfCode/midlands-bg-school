@@ -69,7 +69,7 @@ Replace <your-github-username>!
 
 Every time when some change is committed there is a precommit hook to format the files the developer has updated
 
-In case the repository has no formatting from the very beggining it is good to run this command before changing anythisng:
+In case the repository has no formatting from the very beggining it is good to run this command before changing anything:
 
 ```js
 npx prettier . --write
