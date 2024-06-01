@@ -11,7 +11,9 @@ const detectLanguage = (): string => {
     navigator.language || (navigator as any).userLanguage
   ).substr(0, 2);
 
-  const urlParams: URLSearchParams = new URLSearchParams(window.location.search);
+  const urlParams: URLSearchParams = new URLSearchParams(
+    window.location.search,
+  );
   const langFromUrl: string | null = urlParams.get("lang");
   if (langFromUrl && availableLocales.indexOf(langFromUrl) !== -1) {
     language = langFromUrl;
@@ -21,12 +23,16 @@ const detectLanguage = (): string => {
 };
 
 const getNestedProperty = (obj: any, key: string): string | null => {
-  return key.split('.').reduce((o, k) => (o && o[k] !== 'undefined' ? o[k] : null), obj);
+  return key
+    .split(".")
+    .reduce((o, k) => (o && o[k] !== "undefined" ? o[k] : null), obj);
 };
 
 const updatePageLanguage = (lang: string): void => {
-  const pageLanguage: string = availableLocales.indexOf(lang) !== -1 ? lang : defaultLanguage;
-  const elements: NodeListOf<HTMLElement> = document.querySelectorAll("[data-i18n]");
+  const pageLanguage: string =
+    availableLocales.indexOf(lang) !== -1 ? lang : defaultLanguage;
+  const elements: NodeListOf<HTMLElement> =
+    document.querySelectorAll("[data-i18n]");
 
   try {
     const json: { [key: string]: any } = locales[pageLanguage];
@@ -41,11 +47,16 @@ const updatePageLanguage = (lang: string): void => {
       const variables: RegExpMatchArray | null = text.match(/{(.*?)}/g);
       if (variables) {
         variables.forEach((variable) => {
-          const datasetEntries: [string, string][] = Object.keys(element.dataset).map((key) => [key, element.dataset[key]!]);
+          const datasetEntries: [string, string][] = Object.keys(
+            element.dataset,
+          ).map((key) => [key, element.dataset[key]!]);
           datasetEntries.forEach(([dataKey, value]) => {
             if (`{${dataKey}}` === variable) {
               try {
-                text = text!.replace(`${variable}`, new Function(`return (${value})`)());
+                text = text!.replace(
+                  `${variable}`,
+                  new Function(`return (${value})`)(),
+                );
               } catch (error) {
                 text = text!.replace(`${variable}`, value);
               }
@@ -75,10 +86,9 @@ document.querySelectorAll(".change-language").forEach((button) => {
     const newLanguage: string | null = target.getAttribute("data-language");
     if (newLanguage && availableLocales.indexOf(newLanguage) !== -1) {
       updatePageLanguage(newLanguage);
+
+
+      
     }
-
-
-
-    
   });
 });

@@ -80,6 +80,9 @@ For this case you need to have prettier globally installed on you computer
 ```js
 npm install -g prettier
 ```
+```js
+npx prettier --write .
+```
 
 Install prettier pre-commit hook for lint staging
 
