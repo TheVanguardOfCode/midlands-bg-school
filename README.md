@@ -32,8 +32,8 @@ Replace <your-github-username>!
 
     # Sync your fork
     git fetch upstream
-    git checkout master
-    git merge upstream/master
+    git checkout main
+    git merge upstream/main
 ```
 
 5 After adding the upstream and checking that all files are up to date, we now will create new branch before editing any files. There are two ways to do so:
