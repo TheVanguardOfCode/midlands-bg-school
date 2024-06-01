@@ -30,10 +30,12 @@ Replace <your-github-username>!
 
     git pull upstream main
 
-    # Sync your fork
+    # Sync your fork localy
     git fetch upstream
     git checkout main
     git merge upstream/main
+    # Sync your forked repository
+    git push
 ```
 
 5 After adding the upstream and checking that all files are up to date, we now will create new branch before editing any files. There are two ways to do so:
