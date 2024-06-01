@@ -1,5 +1,5 @@
 const availableLocales = ["en", "bg"];
-const defaultLanguage = "en";
+const defaultLanguage = navigator.language.split("-")[0];
 // Directly import JSON files with assertion
 import en from "../locales/en.json" assert { type: "json" };
 import bg from "../locales/bg.json" assert { type: "json" };
