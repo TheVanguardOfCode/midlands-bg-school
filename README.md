@@ -88,3 +88,15 @@ npx mrm@2 lint-staged
 ```
 
 You can see the official documentation here - https://prettier.io/docs/en/precommit
+
+Compile to ES6 command from ts to js files
+
+```js
+tsc.cmd
+```
+
+Watch mode
+
+```js
+ tsc.cmd [filename.js] --watch
+```
