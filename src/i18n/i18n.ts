@@ -86,11 +86,6 @@ document.querySelectorAll(".change-language").forEach((button) => {
     const newLanguage: string | null = target.getAttribute("data-language");
     if (newLanguage && availableLocales.indexOf(newLanguage) !== -1) {
       updatePageLanguage(newLanguage);
-
-
-
-
-      
     }
   });
 });
