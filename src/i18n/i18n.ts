@@ -1,13 +1,11 @@
 const availableLocales: string[] = ["en", "bg"];
 const defaultLanguage: string = navigator.language.split("-")[0];
 
-// Directly import JSON files with assertion
 import en from "../locales/en.json" assert { type: "json" };
 import bg from "../locales/bg.json" assert { type: "json" };
 
 const locales: { [key: string]: { [key: string]: any } } = { en, bg };
 
-// Function to detect user's language and set it
 const detectLanguage = (): string => {
   let language: string = (
     navigator.language || (navigator as any).userLanguage
@@ -22,12 +20,10 @@ const detectLanguage = (): string => {
   return availableLocales.indexOf(language) !== -1 ? language : defaultLanguage;
 };
 
-// Function to safely get the nested property from the JSON
 const getNestedProperty = (obj: any, key: string): string | null => {
   return key.split('.').reduce((o, k) => (o && o[k] !== 'undefined' ? o[k] : null), obj);
 };
 
-// Function to update the page language
 const updatePageLanguage = (lang: string): void => {
   const pageLanguage: string = availableLocales.indexOf(lang) !== -1 ? lang : defaultLanguage;
   const elements: NodeListOf<HTMLElement> = document.querySelectorAll("[data-i18n]");
@@ -70,11 +66,9 @@ const updatePageLanguage = (lang: string): void => {
   }
 };
 
-// Initial language setup
 const language: string = detectLanguage();
 updatePageLanguage(language);
 
-// Event listener for language change buttons
 document.querySelectorAll(".change-language").forEach((button) => {
   button.addEventListener("click", (event: Event) => {
     const target = event.target as HTMLElement;
@@ -82,5 +76,9 @@ document.querySelectorAll(".change-language").forEach((button) => {
     if (newLanguage && availableLocales.indexOf(newLanguage) !== -1) {
       updatePageLanguage(newLanguage);
     }
+
+
+
+    
   });
 });
