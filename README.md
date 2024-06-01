@@ -25,8 +25,15 @@ Replace <your-github-username>!
 ! - RUN THE FIRST COMMAND ONLY ONCE - !
 
 ```bash
+    # Add a new remote upstream repository
     git remote add upstream git@github.com:TheVanguardOfCode/midlands-bg-school.git
+
     git pull upstream main
+
+    # Sync your fork
+    git fetch upstream
+    git checkout master
+    git merge upstream/master
 ```
 
 5 After adding the upstream and checking that all files are up to date, we now will create new branch before editing any files. There are two ways to do so:
@@ -80,6 +87,7 @@ For this case you need to have prettier globally installed on you computer
 ```js
 npm install -g prettier
 ```
+
 ```js
 npx prettier --write .
 ```
@@ -95,12 +103,13 @@ You can see the official documentation here - https://prettier.io/docs/en/precom
 Compile to ES6 command from ts to js files
 
 ```js
-tsc.cmd 
+tsc.cmd;
 ```
+
 or type filename explicitly
 
 ```js
-tsc.cmd [filename.ts]
+tsc.cmd[filename.ts];
 ```
 
 Watch mode
