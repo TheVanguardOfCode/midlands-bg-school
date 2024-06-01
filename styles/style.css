@@ -1,0 +1,80 @@
+/* Reset */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variables */
+:root {
+  /* ----Fonts---- */
+  --ff: ;
+
+  /* ----Colors---- */
+
+  /* white */
+  --white: #ffffff;
+  --white-blue: #cfeef9;
+  --white-yellow: #fce6d0;
+
+  /* gray */
+  --gray: #d0c8a5;
+
+  /* black */
+  --black: #0d1117;
+  --black-light: #333333;
+  --black-gray: #2b2a33;
+  --black-blue: #303842;
+  --black-brown: #2c2725;
+
+  /* brown */
+  --brown: #b07c43;
+  --brown-light: #be894a;
+  --brown-lighter: #d6a269;
+
+  /* green */
+  --green-dark: #37481b;
+  --green: #607b36;
+  --green-light: #427557;
+  --green-lighter: #63856b;
+
+  /* blue */
+  --blue-darker: #0f2c3d;
+  --blue-dark: #17445e;
+  --blue: #215596;
+  --blue-light: #4fa0ca;
+  --blue-lighter: #8fcde7;
+
+  --blue-second: #6eafba;
+  --blue-second-light: #96d0e0;
+  --blue-second-lighter: #abe1f4;
+
+  /* red */
+  --red: #cb2128;
+  --red-light: #ed2f26;
+  --red-second-light: #da5e3b;
+  --red-second-lighter: #eb5e3d;
+  --red-third: #f25721;
+
+  /* pink */
+  --pink: #e7a298;
+
+  /* Yellow */
+  --yellow-dark: #c7911f;
+  --yellow: #e8aa28;
+  --yellow-light: #ecb644;
+
+  --yellow-second: #f8b217;
+  --yellow-second-light: #f9c915;
+  --yellow-second-lighter: #fedf78;
+
+  /* ----Borders---- */
+
+  /* ----Standard Padding---- */
+
+  /* ----Standard Margin---- */
+
+  /* ----Standard Position---- */
+}
