@@ -1,0 +1,22 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midlands-bg-school</title>
+  </head>
+  <body>
+    <button class="change-language" data-language="en">English</button>
+    <button class="change-language" data-language="bg">Bulgarian</button>
+
+    <h1 data-i18n="header.title">You can put default text here if you want for SEO reasons</h1>
+    <p data-i18n="p-1"></p>
+    <p data-i18n="p-2"></p>
+    <p
+      style="font-size:.9rem; opacity:.5;"
+      data-i18n="variables"
+      data-date="`${String(new Date().getDate()).padStart(2,0)}-${String(new Date().getMonth()+1).padStart(2,0)}-${(new Date().getFullYear())}`"
+      data-static="Hello World"
+      data-time="(new Date()).getTime()"></p>
+      <script type="module" src="./src/i18n/i18n.js"></script>
+  </body>
+</html>

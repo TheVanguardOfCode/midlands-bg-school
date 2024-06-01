@@ -80,6 +80,9 @@ For this case you need to have prettier globally installed on you computer
 ```js
 npm install -g prettier
 ```
+```js
+npx prettier --write .
+```
 
 Install prettier pre-commit hook for lint staging
 
@@ -88,3 +91,20 @@ npx mrm@2 lint-staged
 ```
 
 You can see the official documentation here - https://prettier.io/docs/en/precommit
+
+Compile to ES6 command from ts to js files
+
+```js
+tsc.cmd 
+```
+or type filename explicitly
+
+```js
+tsc.cmd [filename.ts]
+```
+
+Watch mode
+
+```js
+ tsc.cmd [filename.ts] --watch
+```

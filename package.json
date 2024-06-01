@@ -1,32 +1,32 @@
 {
-    "name": "midlands-bg-school",
-    "version": "1.0.0",
-    "description": "school website",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/TheVanguardOfCode/midlands-bg-school.git"
-    },
-    "author": "TheVanguardOfCode",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/TheVanguardOfCode/midlands-bg-school/issues"
-    },
-    "homepage": "https://github.com/TheVanguardOfCode/midlands-bg-school#readme",
-    "devDependencies": {
-        "husky": "^9.0.11",
-        "lint-staged": "^15.2.5",
-        "prettier": "^3.2.5"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.{js,css,md}": "prettier --write"
-    },
-    "scripts": {
-        "prepare": "husky install"
+  "name": "midlands-bg-school",
+  "version": "1.0.0",
+  "description": "school website",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheVanguardOfCode/midlands-bg-school.git"
+  },
+  "author": "TheVanguardOfCode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheVanguardOfCode/midlands-bg-school/issues"
+  },
+  "homepage": "https://github.com/TheVanguardOfCode/midlands-bg-school#readme",
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.5",
+    "prettier": "^3.2.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js, ts, html, css, md}": "prettier --write"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
 }

@@ -1,0 +1,11 @@
+{
+    "header": {
+        "title": "English title"
+      },
+      "p-1":
+        "This is some dummy text in order to test the translation files. You can mostly ignore what this says, especially anything from this point forward. Ok thanks, bye",
+      "p-2": "It also supports custom variable replacements. Examples;",
+      "variables":
+        "Current date: {date}<br>Unix timestamp: {time}<br>Or static text: {static}"
+    
+}

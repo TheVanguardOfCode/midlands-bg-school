@@ -1,0 +1,9 @@
+{
+    "header": {
+        "title": "Българско заглавие"
+      },
+      "p-1": "Параграф 1",
+      "p-2": "Параграф 2;",
+      "variables":
+        "Дата: {date}<br>Unix-Zeitstempel: {time}<br>Или статичен текст: {static}"
+    }
