@@ -69,7 +69,7 @@ Replace <your-github-username>!
 
 Every time when some change is committed there is a precommit hook to format the files the developer has updated
 
-In case the repository has no formatting from the very beggining it is good to run this command before changing anything:
+In case the repository has no formatting from the very beggining it is good to run this command before changing anythisng:
 
 ```js
 npx prettier . --write
@@ -92,11 +92,16 @@ You can see the official documentation here - https://prettier.io/docs/en/precom
 Compile to ES6 command from ts to js files
 
 ```js
-tsc.cmd
+tsc.cmd 
+```
+or type filename explicitly
+
+```js
+tsc.cmd [filename.ts]
 ```
 
 Watch mode
 
 ```js
- tsc.cmd [filename.js] --watch
+ tsc.cmd [filename.ts] --watch
 ```
