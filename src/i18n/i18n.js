@@ -1,8 +1,17 @@
+"use strict";
 const availableLocales = ["en", "bg"];
 const defaultLanguage = navigator.language.split("-")[0];
-import en from "../locales/en.json" with { type: "json" };
-import bg from "../locales/bg.json" with { type: "json" };
-const locales = { en, bg };
+
+const fetchLocale = async (locale) => {
+    const response = await fetch(`../../src/locales/${locale}.json`);
+    return await response.json();
+};
+const locales = {};
+const loadLocales = async () => {
+    for (const locale of availableLocales) {
+        locales[locale] = await fetchLocale(locale);
+    }
+};
 const detectLanguage = () => {
     let language = (navigator.language || navigator.userLanguage).substr(0, 2);
     const urlParams = new URLSearchParams(window.location.search);
@@ -56,14 +65,19 @@ const updatePageLanguage = (lang) => {
         console.error(`Error updating page language to ${lang}:`, error);
     }
 };
-const language = detectLanguage();
-updatePageLanguage(language);
-document.querySelectorAll(".change-language").forEach((button) => {
-    button.addEventListener("click", (event) => {
-        const target = event.target;
-        const newLanguage = target.getAttribute("data-language");
-        if (newLanguage && availableLocales.indexOf(newLanguage) !== -1) {
-            updatePageLanguage(newLanguage);
-        }
+const init = async () => {
+    await loadLocales();
+    const language = detectLanguage();
+    updatePageLanguage(language);
+    document.querySelectorAll(".change-language").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            const target = event.target;
+            const newLanguage = target.getAttribute("data-language");
+            if (newLanguage && availableLocales.indexOf(newLanguage) !== -1) {
+                updatePageLanguage(newLanguage);
+            }
+        });
     });
-});
+};
+// Initialize the application
+init();
