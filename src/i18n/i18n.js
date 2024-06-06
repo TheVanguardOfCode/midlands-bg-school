@@ -1,4 +1,7 @@
-"use strict";
+import {
+  getLocalStorageData,
+  setLocalStorageData,
+} from "../utils/local-storage-util.js";
 const availableLocales = ["en", "bg"];
 const defaultLanguage = "en";
 const locales = {};
@@ -22,14 +25,38 @@ const loadLocales = async () => {
     locales[locale] = await fetchLocale(locale);
   }
 };
+const updateQueryString = (lang) => {
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.pushState(null, "", url.toString());
+};
 const detectLanguage = () => {
-  let language = (navigator.language || navigator.userLanguage).substr(0, 2);
+  let language;
   const urlParams = new URLSearchParams(window.location.search);
   const langFromUrl = urlParams.get("lang");
+  const langFromLocalStorag = getLocalStorageData("lang");
+  const langFromSettings = (
+    navigator.language || navigator.userLanguage
+  ).substr(0, 2);
+  console.log(getLocalStorageData("lang"));
   if (langFromUrl && availableLocales.indexOf(langFromUrl) !== -1) {
     language = langFromUrl;
+    return language;
+  } else if (
+    langFromLocalStorag &&
+    availableLocales.indexOf(JSON.parse(langFromLocalStorag)) !== -1
+  ) {
+    language = JSON.parse(langFromLocalStorag);
+  } else if (
+    langFromSettings &&
+    availableLocales.indexOf(langFromSettings) !== -1
+  ) {
+    language = langFromSettings;
+  } else {
+    language = defaultLanguage;
   }
-  return availableLocales.indexOf(language) !== -1 ? language : defaultLanguage;
+  updateQueryString(language);
+  return language;
 };
 const getNestedProperty = (obj, key) => {
   return key
@@ -86,8 +113,11 @@ const init = async () => {
       const target = event.target;
       const newLanguage = target.getAttribute("data-language");
       if (newLanguage && availableLocales.indexOf(newLanguage) !== -1) {
+        setLocalStorageData("lang", newLanguage);
+        updateQueryString(newLanguage);
         updatePageLanguage(newLanguage);
       }
+      console.log(getLocalStorageData("lang"));
     });
   });
 };
