@@ -1,3 +1,7 @@
+import {
+    getLocalStorageData,
+    setLocalStorageData,
+} from "../utils/local-storage-util.js";
 const availableLocales: string[] = ["en", "bg"];
 const defaultLanguage: string = "en";
 const locales: { [key: string]: { [key: string]: any } } = {};
@@ -26,22 +30,41 @@ const loadLocales = async (): Promise<void> => {
     }
 };
 
+const updateQueryString = (lang: string): void => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", lang);
+    window.history.pushState(null, "", url.toString());
+};
 const detectLanguage = (): string => {
-    let language: string = (
-        navigator.language || (navigator as any).userLanguage
-    ).substr(0, 2);
-
+    let language: string;
     const urlParams: URLSearchParams = new URLSearchParams(
         window.location.search
     );
     const langFromUrl: string | null = urlParams.get("lang");
+    const langFromLocalStorag: string | null = getLocalStorageData("lang");
+    const langFromSettings: string = (
+        navigator.language || (navigator as any).userLanguage
+    ).substr(0, 2);
+    console.log(getLocalStorageData("lang"));
+
     if (langFromUrl && availableLocales.indexOf(langFromUrl) !== -1) {
         language = langFromUrl;
+        return language;
+    } else if (
+        langFromLocalStorag &&
+        availableLocales.indexOf(JSON.parse(langFromLocalStorag)) !== -1
+    ) {
+        language = JSON.parse(langFromLocalStorag);
+    } else if (
+        langFromSettings &&
+        availableLocales.indexOf(langFromSettings) !== -1
+    ) {
+        language = langFromSettings;
+    } else {
+        language = defaultLanguage;
     }
-
-    return availableLocales.indexOf(language) !== -1
-        ? language
-        : defaultLanguage;
+    updateQueryString(language);
+    return language;
 };
 
 const getNestedProperty = (obj: any, key: string): string | null => {
@@ -108,9 +131,13 @@ const init = async (): Promise<void> => {
             const target = event.target as HTMLElement;
             const newLanguage: string | null =
                 target.getAttribute("data-language");
+
             if (newLanguage && availableLocales.indexOf(newLanguage) !== -1) {
+                setLocalStorageData("lang", newLanguage);
+                updateQueryString(newLanguage);
                 updatePageLanguage(newLanguage);
             }
+            console.log(getLocalStorageData("lang"));
         });
     });
 };
