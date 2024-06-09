@@ -22,7 +22,7 @@ describe('localStorageHelpers', () => {
       const dataKey = 'nonExistentKey';
 
       const result = getLocalStorageData(dataKey);
-      expect(result).not.toBeNull();
+      expect(result).toBeNull();
     });
   });
 
