@@ -13,14 +13,22 @@
         "url": "https://github.com/TheVanguardOfCode/midlands-bg-school/issues"
     },
     "homepage": "https://github.com/TheVanguardOfCode/midlands-bg-school#readme",
-    "type": "module",
     "devDependencies": {
+        "@types/assert": "^1.5.10",
+        "@types/chai": "latest",
+        "@types/mocha": "latest",
+        "assert": "^2.0.0",
         "chai": "^5.1.1",
         "husky": "^9.0.11",
         "lint-staged": "^15.2.5",
         "mocha": "^10.4.0",
         "prettier": "^3.2.5",
+        "ts-node": "^9.1.1",
         "typescript": "^5.4.5"
+    },
+    "directories": {
+        "src": "./src",
+        "test": "./src"
     },
     "husky": {
         "hooks": {
@@ -32,7 +40,7 @@
     },
     "scripts": {
         "prepare": "husky install",
-        "test": "mocha 'src/test/**/*.test.js' --require ./test/setup.mjs --extension js"
+        "test": "mocha"
     },
     "dependencies": {
         "lit-html": "^3.1.4",
