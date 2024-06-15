@@ -119,3 +119,9 @@ Watch mode
 ```js
  tsc.cmd [filename.ts] --watch
 ```
+
+Unit testing with Jest
+
+```js
+jest test
+```
