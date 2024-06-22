@@ -1,51 +1,18 @@
 import {
   getLocalStorageData,
   setLocalStorageData,
-} from "../utils/local-storage-util.js";
+} from "../utils/local-storage-util";
 import {
   locales,
   dataI18n,
   langString,
-  availableLocales,
   defaultLanguage,
 } from "../utils/i18n-util";
-import { AvailableLocales } from "../model/available-locales.types.js";
-import {NavigatorExtend} from "../model/navigator-extend.types.js"
-
-const fetchLocale = async (
-  locale: string
-): Promise<{ [key: string]: string }> => {
-  try {
-    const response = await fetch(`../../src/locales/${locale}.json`);
-    const responseContentType = response.headers
-      .get("Content-Type")
-      ?.split(";")[0];
-
-    if (responseContentType !== "application/json") {
-      throw new Error(`Error! Status: ${locale}.json doesn't exist`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    throw error;
-  }
-};
-
-const loadLocales = async (): Promise<void> => {
-  for (const locale of availableLocales) {
-    locales[locale] = await fetchLocale(locale);
-  }
-};
-
-const updateQueryString = (lang: string): void => {
-  const url = new URL(window.location.href);
-  url.searchParams.set(langString, lang);
-  window.history.pushState(null, "", url.toString());
-};
-
-const isValidLocale = (lang: string | null): lang is AvailableLocales => {
-  return lang !== null && availableLocales.includes(lang as AvailableLocales);
-};
+import { AvailableLocales } from "../model/available-locales.types";
+import {NavigatorExtend} from "../model/navigator-extend.types"
+import { loadLocales } from "./load-locales";
+import { updateQueryString } from "./update-query-string";
+import { isValidLocale } from "./is-valid-locale";
 
 const detectLanguage = (): AvailableLocales => {
   const urlParams = new URLSearchParams(window.location.search);
