@@ -1,5 +1,5 @@
 import {AvailableLocales} from '../model/available-locales.types'
-import { Locales } from "../model/locales.types";
+import {Locales} from '../model/locales.types'
 
 export const locales: Locales = {};
 export const dataI18n: string = "data-i18n";

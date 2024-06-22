@@ -9,8 +9,12 @@
     "moduleResolution": "node",
     "rootDir": "./src",
     "noEmitOnError": true,
-    "declaration": false
+    "declaration": false,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "jest.setup.ts"],
   "exclude": ["src/**/*.types.ts", "src/**/*.test.ts"]
 }
