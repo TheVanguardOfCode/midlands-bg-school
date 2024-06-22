@@ -9,8 +9,8 @@ import {
   availableLocales,
   defaultLanguage,
 } from "../utils/i18n-util";
-import { AvailableLocales } from "../model/AvailableLocales.types";
-import {NavigatorExtend} from "../model/NavigatorExtend.types"
+import { AvailableLocales } from "../model/available-locales.types.js";
+import {NavigatorExtend} from "../model/navigator-extend.types.js"
 
 const fetchLocale = async (
   locale: string

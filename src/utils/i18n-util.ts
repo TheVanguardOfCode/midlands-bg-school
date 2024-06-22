@@ -1,4 +1,4 @@
-import {AvailableLocales} from '../model/AvailableLocales.types'
+import {AvailableLocales} from '../model/available-locales.types'
 import { Locales } from "../model/Locales.types";
 
 export const locales: Locales = {};
