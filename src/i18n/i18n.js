@@ -2,21 +2,24 @@ import {
   getLocalStorageData,
   setLocalStorageData,
 } from "../utils/local-storage-util.js";
-const availableLocales = ["en", "bg"];
-const defaultLanguage = "en";
-const locales = {};
+import {
+  locales,
+  dataI18n,
+  langString,
+  availableLocales,
+  defaultLanguage,
+} from "../utils/i18n-util.js";
 const fetchLocale = async (locale) => {
   try {
     const response = await fetch(`../../src/locales/${locale}.json`);
-    const responseContentType = response["headers"]
+    const responseContentType = response.headers
       .get("Content-Type")
-      .split(";")[0];
+      ?.split(";")[0];
     if (responseContentType !== "application/json") {
       throw new Error(`Error! Status: ${locale}.json doesn't exist`);
     }
     return await response.json();
   } catch (error) {
-    // ToDo
     throw error;
   }
 };
@@ -27,49 +30,42 @@ const loadLocales = async () => {
 };
 const updateQueryString = (lang) => {
   const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
+  url.searchParams.set(langString, lang);
   window.history.pushState(null, "", url.toString());
 };
+const isValidLocale = (lang) => {
+  return lang !== null && availableLocales.includes(lang);
+};
 const detectLanguage = () => {
-  let language;
   const urlParams = new URLSearchParams(window.location.search);
   const langFromUrl = urlParams.get("lang");
-  const langFromLocalStorag = getLocalStorageData("lang");
-  const langFromSettings = (
-    navigator.language || navigator.userLanguage
-  ).substr(0, 2);
-  console.log(getLocalStorageData("lang"));
-  if (langFromUrl && availableLocales.indexOf(langFromUrl) !== -1) {
-    language = langFromUrl;
-    return language;
-  } else if (
-    langFromLocalStorag &&
-    availableLocales.indexOf(JSON.parse(langFromLocalStorag)) !== -1
-  ) {
-    language = JSON.parse(langFromLocalStorag);
-  } else if (
-    langFromSettings &&
-    availableLocales.indexOf(langFromSettings) !== -1
-  ) {
-    language = langFromSettings;
+  const langFromLocalStorage = getLocalStorageData("lang");
+  const langFromSettings = (navigator.language || navigator.userLanguage).slice(
+    0,
+    2,
+  );
+  if (isValidLocale(langFromUrl)) {
+    return langFromUrl;
+  } else if (isValidLocale(langFromLocalStorage)) {
+    return langFromLocalStorage;
+  } else if (isValidLocale(langFromSettings)) {
+    return langFromSettings;
   } else {
-    language = defaultLanguage;
+    return defaultLanguage;
   }
-  updateQueryString(language);
-  return language;
 };
 const getNestedProperty = (obj, key) => {
   return key
     .split(".")
-    .reduce((o, k) => (o && o[k] !== "undefined" ? o[k] : null), obj);
+    .reduce((o, k) => (o && o[k] !== undefined ? o[k] : null), obj);
 };
 const updatePageLanguage = (lang) => {
   const pageLanguage = lang;
-  const elements = document.querySelectorAll("[data-i18n]");
+  const elements = document.querySelectorAll(`[${dataI18n}]`);
   try {
     const json = locales[pageLanguage];
     elements.forEach((element) => {
-      const key = element.getAttribute("data-i18n");
+      const key = element.getAttribute(dataI18n);
       if (!key) return;
       let text = getNestedProperty(json, key);
       if (!text) return;
@@ -84,11 +80,11 @@ const updatePageLanguage = (lang) => {
             if (`{${dataKey}}` === variable) {
               try {
                 text = text.replace(
-                  `${variable}`,
+                  variable,
                   new Function(`return (${value})`)(),
                 );
               } catch (error) {
-                text = text.replace(`${variable}`, value);
+                text = text.replace(variable, value);
               }
             }
           });
@@ -112,12 +108,11 @@ const init = async () => {
     button.addEventListener("click", (event) => {
       const target = event.target;
       const newLanguage = target.getAttribute("data-language");
-      if (newLanguage && availableLocales.indexOf(newLanguage) !== -1) {
-        setLocalStorageData("lang", newLanguage);
+      if (isValidLocale(newLanguage)) {
+        setLocalStorageData(langString, newLanguage);
         updateQueryString(newLanguage);
         updatePageLanguage(newLanguage);
       }
-      console.log(getLocalStorageData("lang"));
     });
   });
 };

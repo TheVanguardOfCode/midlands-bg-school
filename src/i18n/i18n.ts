@@ -2,9 +2,15 @@ import {
   getLocalStorageData,
   setLocalStorageData,
 } from "../utils/local-storage-util.js";
-const availableLocales: string[] = ["en", "bg"];
-const defaultLanguage: string = "en";
-const locales: { [key: string]: { [key: string]: string } } = {};
+import {
+  locales,
+  dataI18n,
+  langString,
+  availableLocales,
+  defaultLanguage,
+} from "../utils/i18n-util";
+import { AvailableLocales } from "../model/AvailableLocales.types";
+import {NavigatorExtend} from "../model/NavigatorExtend.types"
 
 const fetchLocale = async (
   locale: string
@@ -18,7 +24,7 @@ const fetchLocale = async (
     if (responseContentType !== "application/json") {
       throw new Error(`Error! Status: ${locale}.json doesn't exist`);
     }
-    
+
     return await response.json();
   } catch (error) {
     throw error;
@@ -33,26 +39,27 @@ const loadLocales = async (): Promise<void> => {
 
 const updateQueryString = (lang: string): void => {
   const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
+  url.searchParams.set(langString, lang);
   window.history.pushState(null, "", url.toString());
 };
 
-const detectLanguage = (): string => {
+const isValidLocale = (lang: string | null): lang is AvailableLocales => {
+  return lang !== null && availableLocales.includes(lang as AvailableLocales);
+};
+
+const detectLanguage = (): AvailableLocales => {
   const urlParams = new URLSearchParams(window.location.search);
   const langFromUrl = urlParams.get("lang");
   const langFromLocalStorage = getLocalStorageData("lang");
   const langFromSettings = (
-    navigator.language || (navigator as any).userLanguage
-  ).substr(0, 2);
+    navigator.language || (navigator as NavigatorExtend).userLanguage
+  ).slice(0, 2) as string;
 
-  if (langFromUrl && availableLocales.includes(langFromUrl)) {
+  if (isValidLocale(langFromUrl)) {
     return langFromUrl;
-  } else if (
-    langFromLocalStorage &&
-    availableLocales.includes(JSON.parse(langFromLocalStorage))
-  ) {
-    return JSON.parse(langFromLocalStorage);
-  } else if (availableLocales.includes(langFromSettings)) {
+  } else if (isValidLocale(langFromLocalStorage)) {
+    return langFromLocalStorage;
+  } else if (isValidLocale(langFromSettings)) {
     return langFromSettings;
   } else {
     return defaultLanguage;
@@ -68,14 +75,14 @@ const getNestedProperty = (obj: any, key: string): string | null => {
 const updatePageLanguage = (lang: string): void => {
   const pageLanguage = lang;
   const elements = document.querySelectorAll(
-    "[data-i18n]"
+    `[${dataI18n}]`
   ) as NodeListOf<HTMLElement>;
 
   try {
     const json = locales[pageLanguage];
 
     elements.forEach((element) => {
-      const key = element.getAttribute("data-i18n");
+      const key = element.getAttribute(dataI18n);
       if (!key) return;
 
       let text = getNestedProperty(json, key);
@@ -124,8 +131,8 @@ const init = async (): Promise<void> => {
       const target = event.target as HTMLElement;
       const newLanguage = target.getAttribute("data-language");
 
-      if (newLanguage && availableLocales.includes(newLanguage)) {
-        setLocalStorageData("lang", newLanguage);
+      if (isValidLocale(newLanguage)) {
+        setLocalStorageData(langString, newLanguage);
         updateQueryString(newLanguage);
         updatePageLanguage(newLanguage);
       }
