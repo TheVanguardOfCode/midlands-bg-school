@@ -49,8 +49,8 @@ const isValidLocale = (lang: string | null): lang is AvailableLocales => {
 
 const detectLanguage = (): AvailableLocales => {
   const urlParams = new URLSearchParams(window.location.search);
-  const langFromUrl = urlParams.get("lang");
-  const langFromLocalStorage = getLocalStorageData("lang");
+  const langFromUrl = urlParams.get(langString);
+  const langFromLocalStorage = getLocalStorageData(langString);
   const langFromSettings = (
     navigator.language || (navigator as NavigatorExtend).userLanguage
   ).slice(0, 2) as string;
@@ -114,7 +114,7 @@ const updatePageLanguage = (lang: string): void => {
 
     const htmlElement = document.querySelector("html");
     if (htmlElement) {
-      htmlElement.setAttribute("lang", pageLanguage);
+      htmlElement.setAttribute(langString, pageLanguage);
     }
   } catch (error) {
     console.error(`Error updating page language to ${lang}:`, error);

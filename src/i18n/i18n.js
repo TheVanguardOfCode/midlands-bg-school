@@ -8,7 +8,7 @@ import {
   langString,
   availableLocales,
   defaultLanguage,
-} from "../utils/i18n-util.js";
+} from "../utils/i18n-util";
 const fetchLocale = async (locale) => {
   try {
     const response = await fetch(`../../src/locales/${locale}.json`);
@@ -38,8 +38,8 @@ const isValidLocale = (lang) => {
 };
 const detectLanguage = () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const langFromUrl = urlParams.get("lang");
-  const langFromLocalStorage = getLocalStorageData("lang");
+  const langFromUrl = urlParams.get(langString);
+  const langFromLocalStorage = getLocalStorageData(langString);
   const langFromSettings = (navigator.language || navigator.userLanguage).slice(
     0,
     2,
@@ -94,7 +94,7 @@ const updatePageLanguage = (lang) => {
     });
     const htmlElement = document.querySelector("html");
     if (htmlElement) {
-      htmlElement.setAttribute("lang", pageLanguage);
+      htmlElement.setAttribute(langString, pageLanguage);
     }
   } catch (error) {
     console.error(`Error updating page language to ${lang}:`, error);
