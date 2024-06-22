@@ -8,7 +8,7 @@ import {
   langString,
   availableLocales,
   defaultLanguage,
-} from "../utils/i18n-util";
+} from "../utils/i18n-util.js";
 const fetchLocale = async (locale) => {
   try {
     const response = await fetch(`../../src/locales/${locale}.json`);
