@@ -10,7 +10,7 @@ const config: Config = {
     '^.+\\.jsx?$': 'babel-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
-  setupFiles: ['<rootDir>/jest.setup.js'], // Ensure this line is included for setting up jest-fetch-mock
+  setupFiles: ['<rootDir>/jest.setup.js'],
 };
 
 export default config;
