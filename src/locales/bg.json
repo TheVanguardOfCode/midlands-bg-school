@@ -1,9 +1,22 @@
 {
     "header": {
-        "title": "Българско заглавие"
-      },
-      "p-1": "Параграф 1",
-      "p-2": "Параграф 2;",
-      "variables":
-        "Дата: {date}<br>Unix-Zeitstempel: {time}<br>Или статичен текст: {static}"
+        "title-1": "Първокласно-Българско",
+        "title-2": "Училище",
+        "nav-link-1": "Начало",
+        "nav-link-2": "Учебна програма",
+        "dropdown-link-2-1": "Форми на обучение",
+        "dropdown-link-2-2": "Класове и групи",
+        "dropdown-link-2-3": "График",
+        "dropdown-link-2-4": "Учебни предмети",
+        "dropdown-link-2-5": "Допълнителни дейности",
+        "nav-link-3": "Междучасие",
+        "dropdown-link-3-1": "Събития",
+        "dropdown-link-3-2": "Любопитно",
+        "nav-link-4": "Записване",
+        "dropdown-link-4-1": "Годишна такса",
+        "dropdown-link-4-2": "Заявление за записване",
+        "nav-link-5": "Контакт",
+        "language-link-1": "Бгр",
+        "language-link-2": "Анг"
     }
+}

@@ -1,20 +1,20 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "rootDir": "./src",
-    "noEmitOnError": true,
-    "declaration": false,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src/**/*", "jest.setup.ts"],
-  "exclude": ["src/**/*.types.ts", "src/**/*.test.ts, node_modules"]
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "rootDir": "./src",
+        "noEmitOnError": true,
+        "declaration": false,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    },
+    "include": ["src/**/*", "jest.setup.ts"],
+    "exclude": ["src/**/*.types.ts", "src/**/*.test.ts", "node_modules"]
 }
