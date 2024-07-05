@@ -105,23 +105,11 @@ You can see the official documentation here - https://prettier.io/docs/en/precom
 Compile to ES6 command from ts to js files
 
 ```js
-tsc.cmd;
-```
-
-or type filename explicitly
-
-```js
-tsc.cmd[filename.ts];
-```
-
-Watch mode
-
-```js
- tsc.cmd [filename.ts] --watch
+npm run build;
 ```
 
 Unit testing with Jest
 
 ```js
-jest test
+npm test
 ```
