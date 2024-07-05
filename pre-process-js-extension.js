@@ -19,7 +19,7 @@ const addJsExtension = (filePath) => {
           return p1 + p2;
         }
         return p1 + p2 + ".js";
-      }
+      },
     );
     fs.writeFileSync(filePath, content, "utf8");
   }
