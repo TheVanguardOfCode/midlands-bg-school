@@ -1,5 +1,5 @@
-import { html, render, TemplateResult } from "./lib.js";
-import { initI18n } from "./i18n/i18n.js";
+import { html, render, TemplateResult } from "./lib";
+import { initI18n } from "./i18n/i18n";
 
 const DARK_THEME = "dark";
 const LIGHT_THEME = "light";
