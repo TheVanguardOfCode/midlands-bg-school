@@ -1,11 +1,22 @@
 {
     "header": {
-        "title": "English title"
-      },
-      "p-1":
-        "This is some dummy text in order to test the translation files. You can mostly ignore what this says, especially anything from this point forward. Ok thanks, bye",
-      "p-2": "It also supports custom variable replacements. Examples;",
-      "variables":
-        "Current date: {date}<br>Unix timestamp: {time}<br>Or static text: {static}"
-    
+        "title-1": "Midlands-Bulgarien",
+        "title-2": "School",
+        "nav-link-1": "Home",
+        "nav-link-2": "School Timetable",
+        "dropdown-link-2-1": "Forms of Studying",
+        "dropdown-link-2-2": "Classes and Groups",
+        "dropdown-link-2-3": "Timetable",
+        "dropdown-link-2-4": "Core Subjects",
+        "dropdown-link-2-5": "Non-Core Subject",
+        "nav-link-3": "Playtime",
+        "dropdown-link-3-1": "Events",
+        "dropdown-link-3-2": "Fun Facts",
+        "nav-link-4": "Enrollment",
+        "dropdown-link-4-1": "Annual Fees",
+        "dropdown-link-4-2": "Student Enrollment",
+        "nav-link-5": "Contact Us",
+        "language-link-1": "Bul",
+        "language-link-2": "Eng"
+    }
 }

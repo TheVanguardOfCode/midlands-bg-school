@@ -9,22 +9,21 @@
         <base href="/" />
         <link rel="icon" type="image/png" href="" />
         <!-- StyleSheets -->
-
+        <link rel="stylesheet" href="./styles/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link
+            rel="icon"
+            type="image/png"
+            href="https://res.cloudinary.com/diebeaf02/image/upload/v1708866095/Repos/miros-favicon-32x32.png" />
         <!-- Scripts -->
-        <script type="module" src="./src/i18n/i18n.js"></script>
+        <script type="module" src="./src/main.js"></script>
     </head>
     <body>
-        <button class="change-language" data-language="en">English</button>
-        <button class="change-language" data-language="bg">Bulgarian</button>
-
-        <h1 data-i18n="header.title">Unable to load languages</h1>
-        <p data-i18n="p-1"></p>
-        <p data-i18n="p-2"></p>
-        <p
-            style="font-size: 0.9rem; opacity: 0.5"
-            data-i18n="variables"
-            data-date="`${String(new Date().getDate()).padStart(2,0)}-${String(new Date().getMonth()+1).padStart(2,0)}-${(new Date().getFullYear())}`"
-            data-static="Hello World"
-            data-time="(new Date()).getTime()"></p>
+        <header id="header"></header>
+        <main>
+            <section class="demo"></section>
+        </main>
     </body>
 </html>
