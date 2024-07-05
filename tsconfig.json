@@ -16,5 +16,5 @@
     }
   },
   "include": ["src/**/*", "jest.setup.ts"],
-  "exclude": ["src/**/*.types.ts", "src/**/*.test.ts, node_modules"]
+  "exclude": ["src/**/*.types.ts", "src/**/*.test.ts"]
 }

@@ -39,6 +39,7 @@
     },
     "scripts": {
         "prepare": "husky install",
+        "build": "tsc && node pre-process-js-extension.js",
         "test": "jest --config ./jest.config.ts"
     },
     "dependencies": {
