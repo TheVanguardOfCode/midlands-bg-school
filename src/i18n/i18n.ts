@@ -1,18 +1,18 @@
 import {
     getLocalStorageData,
     setLocalStorageData,
-} from "../utils/local-storage-util.js";
+} from "../utils/local-storage-util";
 import {
     locales,
     dataI18n,
     langString,
     defaultLanguage,
-} from "../utils/i18n-util.js";
+} from "../utils/i18n-util";
 import { AvailableLocales } from "../model/available-locales.types";
 import { NavigatorExtend } from "../model/navigator-extend.types";
-import { loadLocales } from "./load-locales.js";
-import { updateQueryString } from "./update-query-string.js";
-import { isValidLocale } from "./is-valid-locale.js";
+import { loadLocales } from "./load-locales";
+import { updateQueryString } from "./update-query-string";
+import { isValidLocale } from "./is-valid-locale";
 
 const detectLanguage = (): AvailableLocales => {
     const urlParams = new URLSearchParams(window.location.search);
