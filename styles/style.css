@@ -348,12 +348,8 @@ div.nav-link * {
     padding: 0.25em;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    color: var(--nav-hover-color);
-}
-
-.dropdown-item:hover .nav-link {
+.nav-link.active,
+.dropdown-item.active .nav-link {
     color: var(--nav-hover-color);
     transform: scale(0.9);
 }
@@ -392,7 +388,6 @@ div.nav-link * {
 }
 
 /* Show dropdown menu */
-/* .dropdown-item:hover .dropdown-menu, */
 .dropdown-menu.active {
     max-height: 1000px;
     transition: max-height 2s ease-in;
@@ -419,10 +414,16 @@ div.nav-link * {
         transform 0.3s;
 }
 
-.dropdown-link:hover,
+/* .dropdown-link:hover, */
 .dropdown-link.active {
     color: var(--nav-dropdown-hover-color);
     transform: scale(1.05);
+}
+@media (hover: hover) {
+    .dropdown-link:hover {
+        color: var(--nav-dropdown-hover-color);
+        transform: scale(1.05);
+    }
 }
 
 .dropdown-arrow {
@@ -435,8 +436,8 @@ div.nav-link * {
 
 /* Rotate dropdown icon */
 .dropdown-arrow.active,
-.lang-menu:hover .dropdown-arrow,
-.dropdown-item:hover .dropdown-arrow {
+.lang-menu.active .dropdown-arrow,
+.dropdown-item.active .dropdown-arrow {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     transform: rotate(180deg);
@@ -463,6 +464,7 @@ div.nav-link * {
     padding-inline: 0;
     padding: 0.1em 0.8em;
 }
+
 .selected-lang div:before,
 .lang-menu ul li a:before {
     content: "";
@@ -481,14 +483,8 @@ div.nav-link * {
     background-image: url(https://flagsapi.com/GB/shiny/32.png);
 }
 
-/* .lang-menu:hover .dropdown-menu, */
 .lang-menu.active .dropdown-menu {
-    opacity: 1;
     top: 2em;
-    pointer-events: initial;
-    transition:
-        opacity 0.4s,
-        top 0.4s;
 }
 
 .selected-lang {
@@ -500,10 +496,6 @@ div.nav-link * {
     align-items: center;
 }
 
-/* .selected-lang * {
-    pointer-events: none;
-} */
-
 .selected-lang img {
     width: 32px;
     border-radius: 50%;
@@ -512,9 +504,10 @@ div.nav-link * {
 .selected-lang i {
     font-size: 1rem;
 }
-
-.lang-menu:hover .selected-lang {
-    transform: scale(0.9);
+@media (hover: hover) {
+    .lang-menu:hover .selected-lang {
+        transform: scale(0.9);
+    }
 }
 
 /* Dark Mode Toggle */
@@ -699,7 +692,6 @@ main {
     .nav-settings {
         background-color: transparent;
         border-radius: 50px 0 0 0;
-
         display: flex;
         padding: 2em 3em;
         width: 100%;
@@ -729,6 +721,7 @@ main {
         transition: all 0.8s;
         background-color: var(--nav-bg);
     }
+
     .lang-menu {
         z-index: unset;
         width: auto;
@@ -771,6 +764,7 @@ main {
     .nav-link {
         height: auto;
     }
+
     .nav-menu .nav-link {
         padding: 1em 1.5em;
         justify-content: space-between;
@@ -802,7 +796,6 @@ main {
     }
     /* Show dropdown menu and submenu */
 
-    /* .dropdown-item:hover .dropdown-menu, */
     .dropdown-item.active .dropdown-menu {
         max-height: 1000px;
         transition: max-height 0.4s ease-in;

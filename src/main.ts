@@ -7,7 +7,9 @@ const headerRoot = document.getElementById("header") as HTMLElement;
 
 // Media Queries
 const mqlTouchDevice = window.matchMedia("(hover: none)");
-const mqlMobileNavScreenSize = window.matchMedia("(max-width: 1094px)");
+const mqlMobileNavScreenSize = window.matchMedia(
+    "screen and (max-width: 1094px)"
+);
 let currentNavUl: HTMLUListElement | undefined;
 
 const headerTemplate = (
@@ -275,7 +277,7 @@ const navClassHandler = () => {
     if (mqlTouchDevice.matches && mqlMobileNavScreenSize.matches) {
         removeNavActiveClass([
             ...nav.querySelectorAll(
-                ".dropdown-arrow, .dropdown-menu, div.nav-link"
+                ".dropdown-arrow,.dropdown-menu,div.nav-link,.lang-menu"
             ),
         ]);
         if (activeDropdownLink) {
@@ -294,11 +296,21 @@ const navClassHandler = () => {
         }
     } else {
         removeNavActiveClass([
-            ...nav.querySelectorAll(".dropdown-menu, .dropdown-arrow"),
+            ...nav.querySelectorAll(
+                ".dropdown-menu,.dropdown-arrow,.lang-menu,.selected-lang.nav-link"
+            ),
         ]);
 
         if (!activeDropdownLink) {
             removeNavActiveClass([...navMenu.querySelectorAll("div.nav-link")]);
+        } else {
+            removeNavActiveClass([...navMenu.querySelectorAll(".nav-link")]);
+            const elements = [
+                ...activeDropdownLink.parentElement!.parentElement!
+                    .parentElement!.children,
+            ];
+            const currentNavLink = elements[0];
+            currentNavLink.classList.toggle("active");
         }
     }
 };
@@ -306,6 +318,7 @@ const navClassHandler = () => {
 // Nav links handlers
 const navLinkTouchHandler = (currentEl: HTMLElement) => {
     const navMenu = document.getElementById("navMenu") as HTMLElement;
+    const navSettings = document.getElementById("navSettings") as HTMLElement;
     if (currentEl.nodeName === "DIV") {
         currentNavUl = currentEl.parentElement!.getElementsByTagName("ul")[0];
         const isActive = currentNavUl.classList.contains("active");
@@ -319,10 +332,18 @@ const navLinkTouchHandler = (currentEl: HTMLElement) => {
         }
 
         if (mqlTouchDevice.matches && !mqlMobileNavScreenSize.matches) {
+            if (isLangLink) {
+                removeNavActiveClass([
+                    ...navMenu.querySelectorAll(
+                        ".dropdown-arrow,.dropdown-menu,div.nav-link"
+                    ),
+                ]);
+            }
+        }
+        if (mqlTouchDevice.matches) {
             const activeDropdownLink = navMenu.querySelectorAll(
                 ".dropdown-link.active"
             )[0] as HTMLElement;
-
             if (activeDropdownLink) {
                 const elements = [
                     ...activeDropdownLink.parentElement!.parentElement!
@@ -335,6 +356,16 @@ const navLinkTouchHandler = (currentEl: HTMLElement) => {
                     currentActiveNavLink.classList.remove("active");
                 }
             }
+        }
+
+        if (isLangLink) {
+            currentEl.parentElement!.classList.toggle("active");
+        } else {
+            removeNavActiveClass([
+                ...navSettings.querySelectorAll(
+                    ".dropdown-arrow,.dropdown-menu,div.nav-link,.lang-menu"
+                ),
+            ]);
         }
         currentEl
             .getElementsByClassName("dropdown-arrow")[0]
@@ -375,7 +406,7 @@ const dropdownLinkTouchHandler = (currentEl: HTMLElement) => {
     if (isLangLink) {
         removeNavActiveClass([
             ...navSettings.querySelectorAll(
-                ".dropdown-menu, .selected-lang, .dropdown-arrow, .dropdown-link"
+                ".dropdown-menu,.selected-lang,.dropdown-arrow,.dropdown-link,.lang-menu"
             ),
         ]);
         currentEl.classList.toggle("active");
@@ -438,12 +469,20 @@ const onClickDropdownLinkHandler = (e: Event) => {
     }
 };
 const onMouseEenterDropdownItemHandler = (e: Event) => {
-    const currentEl = e.target as HTMLElement;
-    currentEl.querySelectorAll(".dropdown-menu")[0].classList.add("active");
+    if (!mqlTouchDevice.matches) {
+        const currentEl = e.target as HTMLElement;
+        currentEl.classList.add("active");
+        currentEl.querySelectorAll(".dropdown-menu")[0].classList.add("active");
+    }
 };
 const onMouseLeaveDropdownItemHandler = (e: Event) => {
-    const currentEl = e.target as HTMLElement;
-    currentEl.querySelectorAll(".dropdown-menu")[0].classList.remove("active");
+    if (!mqlTouchDevice.matches) {
+        const currentEl = e.target as HTMLElement;
+        currentEl.classList.remove("active");
+        currentEl
+            .querySelectorAll(".dropdown-menu")[0]
+            .classList.remove("active");
+    }
 };
 const switchThemeHandler = (e: Event) => {
     const target = e.target as HTMLInputElement;
