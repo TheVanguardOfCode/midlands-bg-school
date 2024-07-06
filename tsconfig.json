@@ -11,10 +11,11 @@
         "noEmitOnError": true,
         "declaration": false,
         "baseUrl": "./",
-        "paths": {
-            "@/*": ["src/*"]
-        }
+       "paths": {
+            "*": ["node_modules/*"]
+        },
+        "typeRoots": ["./node_modules/@types"],
     },
-    "include": ["src/**/*", "jest.setup.ts"],
+    "include": ["src/**/*", "./types.d.ts", "jest.setup.ts"],
     "exclude": ["src/**/*.types.ts", "src/**/*.test.ts"]
 }

@@ -1,10 +1,8 @@
-import {
+
+export {
     html,
     render,
-    TemplateResult,
-} from "../node_modules/lit-html/lit-html";
-import { until } from "../node_modules/lit-html/directives/until";
-// @ts-ignore
-import page from "../node_modules/page/page.mjs";
+    TemplateResult
+} from 'https://unpkg.com/lit-html@2.3.0/lit-html.js?module';
 
-export { html, render, TemplateResult, until, page };
+export { until } from 'https://unpkg.com/lit-html@2.3.0/directives/until.js?module';
