@@ -5,7 +5,9 @@ const LIGHT_THEME = "light";
 const headerRoot = document.getElementById("header");
 // Media Queries
 const mqlTouchDevice = window.matchMedia("(hover: none)");
-const mqlMobileNavScreenSize = window.matchMedia("(max-width: 1094px)");
+const mqlMobileNavScreenSize = window.matchMedia(
+  "screen and (max-width: 1094px)",
+);
 let currentNavUl;
 const headerTemplate = (
   switchThemeHandler,
@@ -286,7 +288,9 @@ const navClassHandler = () => {
   )[0];
   if (mqlTouchDevice.matches && mqlMobileNavScreenSize.matches) {
     removeNavActiveClass([
-      ...nav.querySelectorAll(".dropdown-arrow, .dropdown-menu, div.nav-link"),
+      ...nav.querySelectorAll(
+        ".dropdown-arrow,.dropdown-menu,div.nav-link,.lang-menu",
+      ),
     ]);
     if (activeDropdownLink) {
       removeNavActiveClass([...navMenu.querySelectorAll(".nav-link")]);
@@ -304,16 +308,27 @@ const navClassHandler = () => {
     }
   } else {
     removeNavActiveClass([
-      ...nav.querySelectorAll(".dropdown-menu, .dropdown-arrow"),
+      ...nav.querySelectorAll(
+        ".dropdown-menu,.dropdown-arrow,.lang-menu,.selected-lang.nav-link",
+      ),
     ]);
     if (!activeDropdownLink) {
       removeNavActiveClass([...navMenu.querySelectorAll("div.nav-link")]);
+    } else {
+      removeNavActiveClass([...navMenu.querySelectorAll(".nav-link")]);
+      const elements = [
+        ...activeDropdownLink.parentElement.parentElement.parentElement
+          .children,
+      ];
+      const currentNavLink = elements[0];
+      currentNavLink.classList.toggle("active");
     }
   }
 };
 // Nav links handlers
 const navLinkTouchHandler = (currentEl) => {
   const navMenu = document.getElementById("navMenu");
+  const navSettings = document.getElementById("navSettings");
   if (currentEl.nodeName === "DIV") {
     currentNavUl = currentEl.parentElement.getElementsByTagName("ul")[0];
     const isActive = currentNavUl.classList.contains("active");
@@ -326,6 +341,15 @@ const navLinkTouchHandler = (currentEl) => {
       ]);
     }
     if (mqlTouchDevice.matches && !mqlMobileNavScreenSize.matches) {
+      if (isLangLink) {
+        removeNavActiveClass([
+          ...navMenu.querySelectorAll(
+            ".dropdown-arrow,.dropdown-menu,div.nav-link",
+          ),
+        ]);
+      }
+    }
+    if (mqlTouchDevice.matches) {
       const activeDropdownLink = navMenu.querySelectorAll(
         ".dropdown-link.active",
       )[0];
@@ -341,6 +365,15 @@ const navLinkTouchHandler = (currentEl) => {
           currentActiveNavLink.classList.remove("active");
         }
       }
+    }
+    if (isLangLink) {
+      currentEl.parentElement.classList.toggle("active");
+    } else {
+      removeNavActiveClass([
+        ...navSettings.querySelectorAll(
+          ".dropdown-arrow,.dropdown-menu,div.nav-link,.lang-menu",
+        ),
+      ]);
     }
     currentEl
       .getElementsByClassName("dropdown-arrow")[0]
@@ -380,7 +413,7 @@ const dropdownLinkTouchHandler = (currentEl) => {
   if (isLangLink) {
     removeNavActiveClass([
       ...navSettings.querySelectorAll(
-        ".dropdown-menu, .selected-lang, .dropdown-arrow, .dropdown-link",
+        ".dropdown-menu,.selected-lang,.dropdown-arrow,.dropdown-link,.lang-menu",
       ),
     ]);
     currentEl.classList.toggle("active");
@@ -440,12 +473,18 @@ const onClickDropdownLinkHandler = (e) => {
   }
 };
 const onMouseEenterDropdownItemHandler = (e) => {
-  const currentEl = e.target;
-  currentEl.querySelectorAll(".dropdown-menu")[0].classList.add("active");
+  if (!mqlTouchDevice.matches) {
+    const currentEl = e.target;
+    currentEl.classList.add("active");
+    currentEl.querySelectorAll(".dropdown-menu")[0].classList.add("active");
+  }
 };
 const onMouseLeaveDropdownItemHandler = (e) => {
-  const currentEl = e.target;
-  currentEl.querySelectorAll(".dropdown-menu")[0].classList.remove("active");
+  if (!mqlTouchDevice.matches) {
+    const currentEl = e.target;
+    currentEl.classList.remove("active");
+    currentEl.querySelectorAll(".dropdown-menu")[0].classList.remove("active");
+  }
 };
 const switchThemeHandler = (e) => {
   const target = e.target;
