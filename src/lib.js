@@ -1,5 +1,2 @@
-import { html, render } from "../node_modules/lit-html/lit-html.js";
-import { until } from "../node_modules/lit-html/directives/until.js";
-// @ts-ignore
-import page from "../node_modules/page/page.mjs";
-export { html, render, until, page };
+export { html, render } from 'https://unpkg.com/lit-html@2.3.0/lit-html.js?module';
+export { until } from 'https://unpkg.com/lit-html@2.3.0/directives/until.js?module';
