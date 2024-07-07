@@ -4,7 +4,7 @@ const DARK_THEME = "dark";
 const LIGHT_THEME = "light";
 const headerRoot = document.getElementById("header");
 // Media Queries
-const mqlTouchDevice = window.matchMedia("(hover: none)");
+const mqlTouchDevice = window.matchMedia("screen and (hover: none)");
 const mqlMobileNavScreenSize = window.matchMedia(
   "screen and (max-width: 1094px)",
 );
@@ -47,7 +47,7 @@ const headerTemplate = (
       </div>
       <div class="nav-menu" id="navMenu">
         <ul class="nav-list">
-          <li>
+          <li class="noSelect">
             <a
               href="javascript:void(0)"
               class="nav-link"
@@ -57,7 +57,7 @@ const headerTemplate = (
           </li>
           <!-- Dropdown 1 -->
           <li
-            class="dropdown-item"
+            class="dropdown-item noSelect"
             @mouseenter=${onMouseEenterDropdownItemHandler}
             @mouseleave=${onMouseLeaveDropdownItemHandler}
           >
@@ -106,11 +106,27 @@ const headerTemplate = (
                   @click=${onClickDropdownLinkHandler}
                 ></a>
               </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  class="dropdown-link"
+                  data-i18n="header.dropdown-link-2-6"
+                  @click=${onClickDropdownLinkHandler}
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  class="dropdown-link"
+                  data-i18n="header.dropdown-link-2-7"
+                  @click=${onClickDropdownLinkHandler}
+                ></a>
+              </li>
             </ul>
           </li>
           <!-- Dropdown 2 -->
           <li
-            class="dropdown-item"
+            class="dropdown-item noSelect"
             @mouseenter=${onMouseEenterDropdownItemHandler}
             @mouseleave=${onMouseLeaveDropdownItemHandler}
           >
@@ -139,7 +155,7 @@ const headerTemplate = (
           </li>
           <!-- Dropdown 3 -->
           <li
-            class="dropdown-item"
+            class="dropdown-item noSelect"
             @mouseenter=${onMouseEenterDropdownItemHandler}
             @mouseleave=${onMouseLeaveDropdownItemHandler}
           >
@@ -166,7 +182,7 @@ const headerTemplate = (
               </li>
             </ul>
           </li>
-          <li>
+          <li class="noSelect">
             <a
               href="javascript:void(0)"
               class="nav-link"
@@ -192,7 +208,7 @@ const headerTemplate = (
         </div>
         <!-- Language Menu -->
         <div
-          class="lang-menu"
+          class="lang-menu noSelect"
           @mouseenter=${onMouseEenterDropdownItemHandler}
           @mouseleave=${onMouseLeaveDropdownItemHandler}
         >
@@ -507,15 +523,15 @@ const toggleMobileNavHandler = (e) => {
 };
 // Init Device
 const initDevice = () => {
-  mqlTouchDevice.onchange = () => {
+  mqlTouchDevice.addEventListener("change", () => {
     navClassHandler();
-  };
-  mqlMobileNavScreenSize.onchange = (e) => {
+  });
+  mqlMobileNavScreenSize.addEventListener("change", (e) => {
     navClassHandler();
     if (!e.matches) {
       hideMobileNav();
     }
-  };
+  });
 };
 // Init Theme
 const initTheme = () => {
