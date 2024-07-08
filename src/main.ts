@@ -6,9 +6,7 @@ const LIGHT_THEME = "light";
 const headerRoot = document.getElementById("header") as HTMLElement;
 
 // Media Queries
-const mqlTouchDevice = window.matchMedia(
-    "(any-hover: none) and (pointer: coarse)"
-);
+const mqlTouchDevice = window.matchMedia("(pointer: coarse)");
 const mqlMobileNavScreenSize = window.matchMedia(
     "screen and (max-width: 1094px)"
 );
