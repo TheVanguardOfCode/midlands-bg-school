@@ -5,9 +5,12 @@ const LIGHT_THEME = "light";
 const headerRoot = document.getElementById("header");
 // Media Queries
 const mqlTouchDevice = window.matchMedia("(pointer: coarse)");
+const mqlNoneTouchDevice = window.matchMedia("(pointer: fine)");
 const mqlMobileNavScreenSize = window.matchMedia(
   "screen and (max-width: 1094px)",
 );
+let touchDevice = mqlTouchDevice.matches;
+let mobileNav = mqlMobileNavScreenSize.matches;
 let currentNavUl;
 const headerTemplate = (
   switchThemeHandler,
@@ -302,7 +305,7 @@ const navClassHandler = () => {
   const activeDropdownLink = navMenu.querySelectorAll(
     ".dropdown-link.active",
   )[0];
-  if (mqlTouchDevice.matches && mqlMobileNavScreenSize.matches) {
+  if (touchDevice && mobileNav) {
     removeNavActiveClass([
       ...nav.querySelectorAll(
         ".dropdown-arrow,.dropdown-menu,div.nav-link,.lang-menu",
@@ -356,7 +359,7 @@ const navLinkTouchHandler = (currentEl) => {
         ),
       ]);
     }
-    if (mqlTouchDevice.matches && !mqlMobileNavScreenSize.matches) {
+    if (touchDevice && !mobileNav) {
       if (isLangLink) {
         removeNavActiveClass([
           ...navMenu.querySelectorAll(
@@ -365,7 +368,7 @@ const navLinkTouchHandler = (currentEl) => {
         ]);
       }
     }
-    if (mqlTouchDevice.matches) {
+    if (touchDevice) {
       const activeDropdownLink = navMenu.querySelectorAll(
         ".dropdown-link.active",
       )[0];
@@ -402,7 +405,7 @@ const navLinkTouchHandler = (currentEl) => {
     ]);
     currentEl.classList.toggle("active");
     navClassHandler();
-    if (mqlTouchDevice.matches && mqlMobileNavScreenSize.matches) {
+    if (touchDevice && mobileNav) {
       hideMobileNav();
     }
   }
@@ -417,7 +420,7 @@ const navLinkNoneTouchHandler = (currentEl) => {
   } else {
     return;
   }
-  if (mqlMobileNavScreenSize.matches) {
+  if (mobileNav) {
     hideMobileNav();
   }
 };
@@ -439,7 +442,7 @@ const dropdownLinkTouchHandler = (currentEl) => {
     ]);
     navClassHandler();
     currentEl.classList.toggle("active");
-    if (mqlTouchDevice.matches && !mqlMobileNavScreenSize.matches) {
+    if (touchDevice && !mobileNav) {
       currentEl.parentElement.parentElement.previousElementSibling.classList.toggle(
         "active",
       );
@@ -467,14 +470,14 @@ const dropdownLinkNoneTouchHandler = (currentEl) => {
       "active",
     );
   }
-  if (mqlMobileNavScreenSize.matches) {
+  if (mobileNav) {
     hideMobileNav();
   }
 };
 // Nav event listeners handlers
 const onClickNavLinkHandler = (e) => {
   const currentEl = e.target;
-  if (mqlTouchDevice.matches) {
+  if (touchDevice) {
     navLinkTouchHandler(currentEl);
   } else {
     navLinkNoneTouchHandler(currentEl);
@@ -482,21 +485,21 @@ const onClickNavLinkHandler = (e) => {
 };
 const onClickDropdownLinkHandler = (e) => {
   const currentEl = e.target;
-  if (mqlTouchDevice.matches) {
+  if (touchDevice) {
     dropdownLinkTouchHandler(currentEl);
   } else {
     dropdownLinkNoneTouchHandler(currentEl);
   }
 };
 const onMouseEenterDropdownItemHandler = (e) => {
-  if (!mqlTouchDevice.matches) {
+  if (!touchDevice) {
     const currentEl = e.target;
     currentEl.classList.add("active");
     currentEl.querySelectorAll(".dropdown-menu")[0].classList.add("active");
   }
 };
 const onMouseLeaveDropdownItemHandler = (e) => {
-  if (!mqlTouchDevice.matches) {
+  if (!touchDevice) {
     const currentEl = e.target;
     currentEl.classList.remove("active");
     currentEl.querySelectorAll(".dropdown-menu")[0].classList.remove("active");
@@ -523,15 +526,31 @@ const toggleMobileNavHandler = (e) => {
 };
 // Init Device
 const initDevice = () => {
-  mqlTouchDevice.addEventListener("change", () => {
+  mqlTouchDevice.addEventListener("change", (e) => {
+    touchDevice = e.matches;
     navClassHandler();
   });
   mqlMobileNavScreenSize.addEventListener("change", (e) => {
+    mobileNav = e.matches;
     navClassHandler();
-    if (!e.matches) {
+    if (!mobileNav) {
       hideMobileNav();
     }
   });
+  if (mqlNoneTouchDevice.matches && mqlTouchDevice.matches) {
+    document.addEventListener("mousemove", () => {
+      if (touchDevice) {
+        touchDevice = false;
+        navClassHandler();
+      }
+    });
+    document.addEventListener("touchstart", () => {
+      if (!touchDevice) {
+        touchDevice = true;
+        navClassHandler();
+      }
+    });
+  }
 };
 // Init Theme
 const initTheme = () => {
