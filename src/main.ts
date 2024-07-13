@@ -4,6 +4,7 @@ import { initI18n } from "./i18n/i18n";
 const DARK_THEME = "dark";
 const LIGHT_THEME = "light";
 const headerRoot = document.getElementById("header") as HTMLElement;
+const footerRoot = document.getElementById("footer") as HTMLElement;
 
 // Media Queries
 const mqlTouchDevice = window.matchMedia("(pointer: coarse)");
@@ -265,6 +266,167 @@ const headerTemplate = (
     </div>
 `;
 
+const footerTemplate = (): TemplateResult =>
+    html`<div class="footer-wrapper">
+            <div class="footer-container">
+                <section class="footer-top">
+                    <div class="footer-nav">
+                        <div class="footer-nav-col">
+                            <h3 class="footer-nav-col-title">Quick links</h3>
+                            <ul class="footer-list">
+                                <li class="noSelect">
+                                    <a
+                                        href="/"
+                                        target="_blank"
+                                        class="footer-nav-link">
+                                        Online learning
+                                    </a>
+                                </li>
+                                <li class="noSelect">
+                                    <a
+                                        href="/"
+                                        target="_blank"
+                                        class="footer-nav-link">
+                                        Student Enrollment Application
+                                    </a>
+                                </li>
+                                <li class="noSelect">
+                                    <a
+                                        href="/"
+                                        target="_blank"
+                                        class="footer-nav-link">
+                                        Fees
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-nav-col">
+                            <h3 class="footer-nav-col-title">Useful links</h3>
+                            <ul class="footer-list">
+                                <li class="noSelect">
+                                    <a
+                                        href="http://bulgarianembassy-london.org/"
+                                        target="_blank"
+                                        class="footer-nav-link">
+                                        Embassy of the Republic of Bulgaria,
+                                        London
+                                    </a>
+                                </li>
+                                <li class="noSelect">
+                                    <a
+                                        href="https://www.mon.bg/ "
+                                        target="_blank"
+                                        class="footer-nav-link">
+                                        Department of Education, Bulgaria
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-nav-col">
+                            <h3 class="footer-nav-col-title">
+                                Learning Resources
+                            </h3>
+                            <ul class="footer-list">
+                                <li class="noSelect">
+                                    <a
+                                        href="https://stepbystep.bgezik.online/login/index.php"
+                                        target="_blank"
+                                        class="footer-nav-link">
+                                        Learn Bulgarian step by step
+                                    </a>
+                                </li>
+                                <li class="noSelect">
+                                    <a
+                                        href="https://bg.e-prosveta.bg/resources/books"
+                                        target="_blank"
+                                        class="footer-nav-link">
+                                        E-books „Prosveta„
+                                    </a>
+                                </li>
+                                <li class="noSelect">
+                                    <a
+                                        href="https://www.bing.com/videos/search?q=%d0%bf%d1%80%d0%b8%d0%ba%d0%b0%d0%b7%d0%ba%d0%b8+%d0%b7%d0%b0+%d1%81%d0%bb%d1%83%d1%88%d0%b0%d0%bd%d0%b5&qpvt=%d0%bf%d1%80%d0%b8%d0%ba%d0%b0%d0%b7%d0%ba%d0%b8+%d0%b7%d0%b0+%d1%81%d0%bb%d1%83%d1%88%d0%b0%d0%bd%d0%b5&FORM=VDRE"
+                                        target="_blank"
+                                        class="footer-nav-link">
+                                        Fairy tales for listening in Bulgarian
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-info">
+                        <div class="footer-info-col">
+                            <address class="footer-info-address">
+                                <div class="footer-info-col">
+                                    <div class="footer-info-social">
+                                        <h2>
+                                            <a
+                                                href="https://www.facebook.com/Mentalisimo ">
+                                                Follow us
+                                                <i
+                                                    class="fa-brands fa-facebook"></i>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <p>
+                                        <a href="mailto:pkbgu@outlook.com">
+                                            <i class="fa-solid fa-envelope"></i
+                                            ><span>Email: </span
+                                            >pkbgu@outlook.com</a
+                                        >
+                                    </p>
+                                    <p>
+                                        <a href="tel:+447305733259">
+                                            <i
+                                                class="fa-solid fa-phone-volume"></i>
+                                            <span>Tel: </span>+44 730 573
+                                            3259</a
+                                        >
+                                    </p>
+                                </div>
+                                <div class="footer-info-col">
+                                    <p>
+                                        <a
+                                            href="https://maps.app.goo.gl/cTUHJCGbbrhSdKSBA"
+                                            target="_blank">
+                                            <i
+                                                class="fa-solid fa-map-location-dot"></i>
+                                            <span>Our school address</span>
+                                        </a>
+                                    </p>
+                                    <p class="p-l pb-s">The Sanctuary</p>
+                                    <p class="p-l pb-s">200 Tangmere Drive,</p>
+                                    <p class="p-l pb-s">
+                                        Castle Vale, Birmingham
+                                    </p>
+                                    <p class="p-l pb-s">B35 7PX</p>
+                                    <p></p>
+                                </div>
+                            </address>
+                        </div>
+                    </div>
+                </section>
+                <section class="footer-bottom">
+                    <div>
+                        <h3>
+                            <span class="nowrap"> Copyright &copy; 2024 </span>
+                            <span class="nowrap">TheVanguardOfCode</span>
+                        </h3>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="custom-shape-footer-wave">
+            <svg
+                class="wave"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>`;
 // Remove all active classes from elements
 const removeNavActiveClass = (elements: NodeListOf<Element> | Element[]) => {
     elements.forEach((el) => {
@@ -294,7 +456,7 @@ const navClassHandler = () => {
     if (touchDevice && mobileNav) {
         removeNavActiveClass([
             ...nav.querySelectorAll(
-                ".dropdown-arrow,.dropdown-menu,div.nav-link,.lang-menu"
+                ".dropdown-arrow,.dropdown-menu,div.nav-link,.lang-menu,.dropdown-item"
             ),
         ]);
         if (activeDropdownLink) {
@@ -306,6 +468,7 @@ const navClassHandler = () => {
             const currentNavLink = elements[0];
             const currentDropdownMenu = elements[1];
             currentNavLink.classList.toggle("active");
+            currentNavLink.parentElement!.classList.toggle("active");
             currentNavLink
                 .getElementsByClassName("dropdown-arrow")[0]
                 .classList.toggle("active");
@@ -314,7 +477,7 @@ const navClassHandler = () => {
     } else {
         removeNavActiveClass([
             ...nav.querySelectorAll(
-                ".dropdown-menu,.dropdown-arrow,.lang-menu,.selected-lang.nav-link"
+                ".dropdown-menu,.dropdown-arrow,.dropdown-item,.lang-menu,.selected-lang.nav-link"
             ),
         ]);
 
@@ -343,7 +506,7 @@ const navLinkTouchHandler = (currentEl: HTMLElement) => {
         if (!isActive && !isLangLink) {
             removeNavActiveClass([
                 ...navMenu.querySelectorAll(
-                    ".dropdown-arrow, .dropdown-menu, div.nav-link"
+                    ".dropdown-arrow,.dropdown-menu,.dropdown-item"
                 ),
             ]);
         }
@@ -352,7 +515,7 @@ const navLinkTouchHandler = (currentEl: HTMLElement) => {
             if (isLangLink) {
                 removeNavActiveClass([
                     ...navMenu.querySelectorAll(
-                        ".dropdown-arrow,.dropdown-menu,div.nav-link"
+                        ".dropdown-arrow,.dropdown-menu,.dropdown-item"
                     ),
                 ]);
             }
@@ -367,10 +530,8 @@ const navLinkTouchHandler = (currentEl: HTMLElement) => {
                         .parentElement!.children,
                 ] as HTMLElement[];
                 const currentActiveNavLink = elements[0];
-                if (!currentEl.isEqualNode(currentActiveNavLink)) {
+                if (currentEl.isEqualNode(currentActiveNavLink)) {
                     currentActiveNavLink.classList.add("active");
-                } else {
-                    currentActiveNavLink.classList.remove("active");
                 }
             }
         }
@@ -387,11 +548,13 @@ const navLinkTouchHandler = (currentEl: HTMLElement) => {
         currentEl
             .getElementsByClassName("dropdown-arrow")[0]
             .classList.toggle("active");
-        currentEl.classList.toggle("active");
+        currentEl.parentElement!.classList.toggle("active");
         currentNavUl.classList.toggle("active");
     } else {
         removeNavActiveClass([
-            ...navMenu.querySelectorAll(".nav-link, .dropdown-link"),
+            ...navMenu.querySelectorAll(
+                ".nav-link,.dropdown-link,.dropdown-arrow,.dropdown-item"
+            ),
         ]);
         currentEl.classList.toggle("active");
         navClassHandler();
@@ -429,7 +592,9 @@ const dropdownLinkTouchHandler = (currentEl: HTMLElement) => {
         currentEl.classList.toggle("active");
     } else {
         removeNavActiveClass([
-            ...navMenu.querySelectorAll(".nav-link, .dropdown-link"),
+            ...navMenu.querySelectorAll(
+                ".nav-link,.dropdown-item,.dropdown-menu,.dropdown-link,.dropdown-arrow"
+            ),
         ]);
         navClassHandler();
         currentEl.classList.toggle("active");
@@ -588,5 +753,6 @@ window.addEventListener("DOMContentLoaded", () => {
         ),
         headerRoot
     );
+    render(footerTemplate(), footerRoot);
     initNav();
 });
