@@ -20,5 +20,28 @@
         "nav-link-5": "Контакт",
         "language-link-1": "Бгр",
         "language-link-2": "Анг"
+    },
+    "footer": {
+        "links-group-title-1": "Бързи връзки в сайта",
+        "footer-link-1-1": "Онлайн обучение",
+        "footer-link-1-2": "Заявление за записване на ученик",
+        "footer-link-1-3": "Годишна такса",
+        "links-group-title-2": "Полезни връзки",
+        "footer-link-2-1": "Посолство на Република България в Лондон",
+        "footer-link-2-2": "Министерство на образованието и науката в България",
+        "links-group-title-3": "Учебни ресурси",
+        "footer-link-3-1": "Учи български стъпка по стъпка",
+        "footer-link-3-2": "Електронни Учебници “Просвета”",
+        "footer-link-3-3": "Приказки за слушане на български език",
+        "footer-social-slogan": "Последвай ни",
+        "footer-contact-1": "Имейл:",
+        "footer-email": "pkbgu@outlook.com",
+        "footer-contact-2": "Тел:",
+        "footer-tel": "+44 730 573 3259",
+        "footer-contact-3": "Адрес на училището",
+        "footer-address-1": "The Sanctuary",
+        "footer-address-2": "200 Tangmere Drive,",
+        "footer-address-3": "Castle Vale, Birmingham",
+        "footer-address-4": "B35 7PX"
     }
 }

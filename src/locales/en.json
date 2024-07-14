@@ -20,5 +20,28 @@
         "nav-link-5": "Contact Us",
         "language-link-1": "Bul",
         "language-link-2": "Eng"
+    },
+    "footer": {
+        "links-group-title-1": "Quick links",
+        "footer-link-1-1": "Online learning",
+        "footer-link-1-2": "Student Enrollment Application",
+        "footer-link-1-3": "Fees",
+        "links-group-title-2": "Useful links",
+        "footer-link-2-1": "Embassy of the Republic of Bulgaria, London",
+        "footer-link-2-2": "Department of Education, Bulgaria",
+        "links-group-title-3": "Learning Resources",
+        "footer-link-3-1": "Learn Bulgarian step by step",
+        "footer-link-3-2": "E-books \"Prosveta\"",
+        "footer-link-3-3": "Fairy tales for listening in Bulgarian",
+        "footer-social-slogan": "Follow us",
+        "footer-contact-1": "Email:",
+        "footer-email": "pkbgu@outlook.com",
+        "footer-contact-2": "Tel:",
+        "footer-tel": "+44 730 573 3259",
+        "footer-contact-3": "Our school address",
+        "footer-address-1": "The Sanctuary",
+        "footer-address-2": "200 Tangmere Drive,",
+        "footer-address-3": "Castle Vale, Birmingham",
+        "footer-address-4": "B35 7PX"
     }
 }

@@ -289,33 +289,53 @@ const footerTemplate = () =>
         <section class="footer-top">
           <div class="footer-nav">
             <div class="footer-nav-col">
-              <h3 class="footer-nav-col-title">Quick links</h3>
+              <h3
+                class="footer-nav-col-title"
+                data-i18n="footer.links-group-title-1"
+              ></h3>
               <ul class="footer-list">
                 <li class="noSelect">
-                  <a href="/" target="_blank" class="footer-nav-link">
-                    Online learning
+                  <a
+                    href="/"
+                    target="_blank"
+                    class="footer-nav-link"
+                    data-i18n="footer.footer-link-1-1"
+                  >
                   </a>
                 </li>
                 <li class="noSelect">
-                  <a href="/" target="_blank" class="footer-nav-link">
-                    Student Enrollment Application
+                  <a
+                    href="/"
+                    target="_blank"
+                    class="footer-nav-link"
+                    data-i18n="footer.footer-link-1-2"
+                  >
                   </a>
                 </li>
                 <li class="noSelect">
-                  <a href="/" target="_blank" class="footer-nav-link"> Fees </a>
+                  <a
+                    href="/"
+                    target="_blank"
+                    class="footer-nav-link"
+                    data-i18n="footer.footer-link-1-3"
+                  >
+                  </a>
                 </li>
               </ul>
             </div>
             <div class="footer-nav-col">
-              <h3 class="footer-nav-col-title">Useful links</h3>
+              <h3
+                class="footer-nav-col-title"
+                data-i18n="footer.links-group-title-2"
+              ></h3>
               <ul class="footer-list">
                 <li class="noSelect">
                   <a
                     href="http://bulgarianembassy-london.org/"
                     target="_blank"
                     class="footer-nav-link"
+                    data-i18n="footer.footer-link-2-1"
                   >
-                    Embassy of the Republic of Bulgaria, London
                   </a>
                 </li>
                 <li class="noSelect">
@@ -323,22 +343,25 @@ const footerTemplate = () =>
                     href="https://www.mon.bg/ "
                     target="_blank"
                     class="footer-nav-link"
+                    data-i18n="footer.footer-link-2-2"
                   >
-                    Department of Education, Bulgaria
                   </a>
                 </li>
               </ul>
             </div>
             <div class="footer-nav-col">
-              <h3 class="footer-nav-col-title">Learning Resources</h3>
+              <h3
+                class="footer-nav-col-title"
+                data-i18n="footer.links-group-title-3"
+              ></h3>
               <ul class="footer-list">
                 <li class="noSelect">
                   <a
                     href="https://stepbystep.bgezik.online/login/index.php"
                     target="_blank"
                     class="footer-nav-link"
+                    data-i18n="footer.footer-link-3-1"
                   >
-                    Learn Bulgarian step by step
                   </a>
                 </li>
                 <li class="noSelect">
@@ -346,8 +369,8 @@ const footerTemplate = () =>
                     href="https://bg.e-prosveta.bg/resources/books"
                     target="_blank"
                     class="footer-nav-link"
+                    data-i18n="footer.footer-link-3-2"
                   >
-                    E-books „Prosveta„
                   </a>
                 </li>
                 <li class="noSelect">
@@ -355,8 +378,8 @@ const footerTemplate = () =>
                     href="https://www.bing.com/videos/search?q=%d0%bf%d1%80%d0%b8%d0%ba%d0%b0%d0%b7%d0%ba%d0%b8+%d0%b7%d0%b0+%d1%81%d0%bb%d1%83%d1%88%d0%b0%d0%bd%d0%b5&qpvt=%d0%bf%d1%80%d0%b8%d0%ba%d0%b0%d0%b7%d0%ba%d0%b8+%d0%b7%d0%b0+%d1%81%d0%bb%d1%83%d1%88%d0%b0%d0%bd%d0%b5&FORM=VDRE"
                     target="_blank"
                     class="footer-nav-link"
+                    data-i18n="footer.footer-link-3-3"
                   >
-                    Fairy tales for listening in Bulgarian
                   </a>
                 </li>
               </ul>
@@ -368,23 +391,29 @@ const footerTemplate = () =>
                 <div class="footer-info-col">
                   <div class="footer-info-social">
                     <h2>
-                      <a href="https://www.facebook.com/Mentalisimo ">
-                        Follow us
+                      <a
+                        href="https://www.facebook.com/Mentalisimo"
+                        target="_blank"
+                      >
+                        <span data-i18n="footer.footer-social-slogan"></span>
                         <i class="fa-brands fa-facebook"></i>
                       </a>
                     </h2>
                   </div>
                   <p>
-                    <a href="mailto:pkbgu@outlook.com">
-                      <i class="fa-solid fa-envelope"></i
-                      ><span>Email: </span>pkbgu@outlook.com</a
+                    <i class="fa-solid fa-envelope"></i>
+                    <span data-i18n="footer.footer-contact-1"></span>
+                    <a
+                      href="mailto:pkbgu@outlook.com"
+                      data-i18n="footer.footer-email"
                     >
+                    </a>
                   </p>
                   <p>
-                    <a href="tel:+447305733259">
-                      <i class="fa-solid fa-phone-volume"></i>
-                      <span>Tel: </span>+44 730 573 3259</a
-                    >
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <span data-i18n="footer.footer-contact-2"></span>
+                    <a href="tel:+447305733259" data-i18n="footer.footer-tel">
+                    </a>
                   </p>
                 </div>
                 <div class="footer-info-col">
@@ -394,13 +423,13 @@ const footerTemplate = () =>
                       target="_blank"
                     >
                       <i class="fa-solid fa-map-location-dot"></i>
-                      <span>Our school address</span>
+                      <span data-i18n="footer.footer-contact-3"></span>
                     </a>
                   </p>
-                  <p class="p-l pb-s">The Sanctuary</p>
-                  <p class="p-l pb-s">200 Tangmere Drive,</p>
-                  <p class="p-l pb-s">Castle Vale, Birmingham</p>
-                  <p class="p-l pb-s">B35 7PX</p>
+                  <p class="p-l pb-s" data-i18n="footer.footer-address-1"></p>
+                  <p class="p-l pb-s" data-i18n="footer.footer-address-2"></p>
+                  <p class="p-l pb-s" data-i18n="footer.footer-address-3"></p>
+                  <p class="p-l pb-s" data-i18n="footer.footer-address-4"></p>
                   <p></p>
                 </div>
               </address>
