@@ -39,3 +39,12 @@ jobs:
 
       - name: Run unit tests
         run: npm test
+
+      - name: Install Cypress
+        run: npm install cypress --save-dev
+
+      - name: Run Cypress tests
+        run: npx cypress run
+        env:
+          # You can set any environment variables your Cypress tests need here
+          # CYPRESS_BASE_URL: http://127.0.0.1:5500/ (if needed)
