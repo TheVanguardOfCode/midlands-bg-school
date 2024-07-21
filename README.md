@@ -113,3 +113,9 @@ Unit testing with Jest
 ```js
 npm test
 ```
+
+End-to-end testing with Cypress
+
+```js
+npx cypress open
+```
