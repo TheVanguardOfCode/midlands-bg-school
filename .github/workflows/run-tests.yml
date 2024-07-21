@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  cypress-run:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -37,7 +37,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Cypress run
+      - name: Run unit tests
+        run: npm test
+
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           build: npm run build
