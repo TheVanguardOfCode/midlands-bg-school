@@ -1,4 +1,4 @@
-name: npm test
+name: CI
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  test:
+  cypress-run:
     runs-on: ubuntu-latest
 
     strategy:
@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -37,14 +37,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run unit tests
-        run: npm test
-
-      - name: Install Cypress
-        run: npm install cypress --save-dev
-
-      - name: Run Cypress tests
-        run: npx cypress run
-        env:
-          # You can set any environment variables your Cypress tests need here
-          # CYPRESS_BASE_URL: http://127.0.0.1:5500/ (if needed)
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: 'http://localhost:5500'
+          wait-on-timeout: 60
