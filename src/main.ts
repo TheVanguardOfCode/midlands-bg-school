@@ -1,9 +1,12 @@
-import { html, render, TemplateResult } from "./lib";
+import { html, render, TemplateResult, page } from "./lib";
 import { initI18n } from "./i18n/i18n";
+import { locales } from "./utils/i18n-util";
+import { homeView } from "./views/homeView";
 
 const DARK_THEME = "dark";
 const LIGHT_THEME = "light";
 const headerRoot = document.getElementById("header") as HTMLElement;
+const mainRoot = document.getElementById("main") as HTMLElement;
 const footerRoot = document.getElementById("footer") as HTMLElement;
 
 // Media Queries
@@ -755,6 +758,26 @@ const initNav = () => {
     // Init Device
     initDevice();
 };
+
+interface LanguageTexts {
+    [key: string]: any;
+}
+
+interface I18nText {
+    en: LanguageTexts;
+    bg: LanguageTexts;
+}
+
+interface Context {
+    render: (content: TemplateResult) => void;
+    i18nText: Partial<I18nText>;
+}
+
+function decorateContext(ctx: Partial<Context>, next: () => void): void {
+    ctx.render = (content: TemplateResult) => render(content, mainRoot);
+    ctx.i18nText = locales;
+    next();
+}
 // On Document Load
 window.addEventListener("DOMContentLoaded", () => {
     render(
@@ -770,4 +793,8 @@ window.addEventListener("DOMContentLoaded", () => {
     );
     render(footerTemplate(), footerRoot);
     initNav();
+
+    page(decorateContext);
+    page("/", homeView);
+    page.start();
 });

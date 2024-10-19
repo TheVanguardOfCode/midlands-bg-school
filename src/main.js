@@ -1,8 +1,11 @@
-import { html, render } from "./lib.js";
+import { html, render, page } from "./lib.js";
 import { initI18n } from "./i18n/i18n.js";
+import { locales } from "./utils/i18n-util.js";
+import { homeView } from "./views/homeView.js";
 const DARK_THEME = "dark";
 const LIGHT_THEME = "light";
 const headerRoot = document.getElementById("header");
+const mainRoot = document.getElementById("main");
 const footerRoot = document.getElementById("footer");
 // Media Queries
 const mqlTouchDevice = window.matchMedia("(pointer: coarse)");
@@ -754,6 +757,11 @@ const initNav = () => {
   // Init Device
   initDevice();
 };
+function decorateContext(ctx, next) {
+  ctx.render = (content) => render(content, mainRoot);
+  ctx.i18nText = locales;
+  next();
+}
 // On Document Load
 window.addEventListener("DOMContentLoaded", () => {
   render(
@@ -769,4 +777,7 @@ window.addEventListener("DOMContentLoaded", () => {
   );
   render(footerTemplate(), footerRoot);
   initNav();
+  page(decorateContext);
+  page("/", homeView);
+  page.start();
 });
