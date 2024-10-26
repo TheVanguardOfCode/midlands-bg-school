@@ -99,7 +99,7 @@
 
     /* ----Standard Position---- */
 }
-[data-theme="dark"] {
+[theme="dark"] {
     --primary-bg: var(--blue-darker);
     --prymary-color: var(--yellow-light);
     --prymary-active-color: var(--white-yellow);
