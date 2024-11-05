@@ -1,0 +1,14 @@
+{
+    "light": {
+        "sun": "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017440/First-Class-Bg-School/home/parallax/sun_ucdabw.png",
+        "cloud1": "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017441/First-Class-Bg-School/home/parallax/cloud1_ailm0w.png",
+        "cloud2": "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017442/First-Class-Bg-School/home/parallax/cloud2_j7l3xo.png",
+        "trees": "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529704/First-Class-Bg-School/home/parallax/trees_qc0ewi.png"
+    },
+    "dark": {
+        "sun": "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529703/First-Class-Bg-School/home/parallax/moon_fiq2yp.png",
+        "cloud1": "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529703/First-Class-Bg-School/home/parallax/cloud1-dark_svc3vd.png",
+        "cloud2": "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529704/First-Class-Bg-School/home/parallax/cloud2-dark_hs0hmq.png",
+        "trees": "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529622/First-Class-Bg-School/home/parallax/trees-dark_eceriy.png"
+    }
+}

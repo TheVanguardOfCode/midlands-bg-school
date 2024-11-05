@@ -1,9 +1,12 @@
 import { html, until, TemplateResult } from "../lib";
+import { fetchLocale } from "../i18n/fetch-locale";
 import { Context } from "../model/page-ctx.types";
+import { ParallaxThemesData } from "../model/available-parallax-themes";
+import { HistoricalFigureData } from "../model/available-historical-figure";
 import { homeViewTemplate } from "../templates/home-view-template";
 import { homeViewParallaxSectionTemplate } from "../templates/home-view-parallax-section-template";
 import { homeViewHistoricalFigureCardTemplate } from "../templates/home-view-historical-figure-card-template";
-const mockData = {
+const mockData: HistoricalFigureData = {
     results: [
         {
             objectId: "1",
@@ -77,7 +80,8 @@ const mockData = {
         },
     ],
 };
-const initParallax = () => {
+
+const initParallax = async () => {
     // Parallax Script
     const parallaxOverlay = document.getElementById(
         "parallaxOverlay"
@@ -97,30 +101,19 @@ const initParallax = () => {
     const cloud1 = document.getElementById("cloud1") as HTMLImageElement;
     const cloud2 = document.getElementById("cloud2") as HTMLImageElement;
 
-    const parallaxThemeMapper: any = {
-        light: {
-            sun: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017440/First-Class-Bg-School/home/parallax/sun_ucdabw.png",
-            cloud1: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017441/First-Class-Bg-School/home/parallax/cloud1_ailm0w.png",
-            cloud2: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017442/First-Class-Bg-School/home/parallax/cloud2_j7l3xo.png",
-            trees: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529704/First-Class-Bg-School/home/parallax/trees_qc0ewi.png",
-        },
-        dark: {
-            sun: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529703/First-Class-Bg-School/home/parallax/moon_fiq2yp.png",
-            cloud1: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529703/First-Class-Bg-School/home/parallax/cloud1-dark_svc3vd.png",
-            cloud2: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529704/First-Class-Bg-School/home/parallax/cloud2-dark_hs0hmq.png",
-            trees: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529622/First-Class-Bg-School/home/parallax/trees-dark_eceriy.png",
-        },
-    };
+    const parallaxThemesData: ParallaxThemesData = await fetchLocale(
+        "parallax-themes-data"
+    );
+
     const targetElement = document.querySelector("html") as HTMLElement;
     const setParallaxImgLinks = () => {
         const currentTheme: string | null = targetElement.getAttribute("theme");
         if (currentTheme) {
-            // cloud1.src = parallaxThemeMapper[currentTheme]["cloud1Url"];
             const elements: NodeListOf<HTMLImageElement> =
                 document.querySelectorAll("[dynamic-img]");
             elements.forEach(
                 (el: HTMLImageElement) =>
-                    (el.src = parallaxThemeMapper[currentTheme][el.id])
+                    (el.src = parallaxThemesData[currentTheme][el.id])
             );
         }
     };
@@ -293,11 +286,11 @@ const loadHomeViewParallaxSection = () => {
     return homeViewParallaxSectionTemplate(currentTemplate);
 };
 
-export function homeView(ctx: Context) {
+export const homeView = async (ctx: Context) => {
     const homeViewParallaxSection: TemplateResult =
         loadHomeViewParallaxSection();
 
     ctx.render(homeViewTemplate(homeViewParallaxSection));
-    initParallax();
+    await initParallax();
     console.log(ctx.i18nText.bg.header);
-}
+};

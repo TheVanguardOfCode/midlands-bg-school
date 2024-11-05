@@ -1,4 +1,5 @@
 import { html } from "../lib.js";
+import { fetchLocale } from "../i18n/fetch-locale.js";
 import { homeViewTemplate } from "../templates/home-view-template.js";
 import { homeViewParallaxSectionTemplate } from "../templates/home-view-parallax-section-template.js";
 import { homeViewHistoricalFigureCardTemplate } from "../templates/home-view-historical-figure-card-template.js";
@@ -76,7 +77,7 @@ const mockData = {
     },
   ],
 };
-const initParallax = () => {
+const initParallax = async () => {
   // Parallax Script
   const parallaxOverlay = document.getElementById("parallaxOverlay");
   const parallaxBackground = document.getElementById("parallax");
@@ -86,34 +87,14 @@ const initParallax = () => {
   const sun = document.getElementById("sun");
   const cloud1 = document.getElementById("cloud1");
   const cloud2 = document.getElementById("cloud2");
-  const parallaxThemeMapper = {
-    light: {
-      sun: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017440/First-Class-Bg-School/home/parallax/sun_ucdabw.png",
-      cloud1:
-        "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017441/First-Class-Bg-School/home/parallax/cloud1_ailm0w.png",
-      cloud2:
-        "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729017442/First-Class-Bg-School/home/parallax/cloud2_j7l3xo.png",
-      trees:
-        "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529704/First-Class-Bg-School/home/parallax/trees_qc0ewi.png",
-    },
-    dark: {
-      sun: "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529703/First-Class-Bg-School/home/parallax/moon_fiq2yp.png",
-      cloud1:
-        "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529703/First-Class-Bg-School/home/parallax/cloud1-dark_svc3vd.png",
-      cloud2:
-        "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529704/First-Class-Bg-School/home/parallax/cloud2-dark_hs0hmq.png",
-      trees:
-        "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729529622/First-Class-Bg-School/home/parallax/trees-dark_eceriy.png",
-    },
-  };
+  const parallaxThemesData = await fetchLocale("parallax-themes-data");
   const targetElement = document.querySelector("html");
   const setParallaxImgLinks = () => {
     const currentTheme = targetElement.getAttribute("theme");
     if (currentTheme) {
-      // cloud1.src = parallaxThemeMapper[currentTheme]["cloud1Url"];
       const elements = document.querySelectorAll("[dynamic-img]");
       elements.forEach(
-        (el) => (el.src = parallaxThemeMapper[currentTheme][el.id]),
+        (el) => (el.src = parallaxThemesData[currentTheme][el.id]),
       );
     }
   };
@@ -242,9 +223,9 @@ const loadHomeViewParallaxSection = () => {
   }
   return homeViewParallaxSectionTemplate(currentTemplate);
 };
-export function homeView(ctx) {
+export const homeView = async (ctx) => {
   const homeViewParallaxSection = loadHomeViewParallaxSection();
   ctx.render(homeViewTemplate(homeViewParallaxSection));
-  initParallax();
+  await initParallax();
   console.log(ctx.i18nText.bg.header);
-}
+};
