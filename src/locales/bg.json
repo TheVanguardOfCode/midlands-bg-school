@@ -43,5 +43,8 @@
         "footer-address-2": "200 Tangmere Drive,",
         "footer-address-3": "Castle Vale, Birmingham",
         "footer-address-4": "B35 7PX"
+    },
+    "home": {
+        "parallax-title": "Добре дошли в Първокласно българско училище!"
     }
 }
