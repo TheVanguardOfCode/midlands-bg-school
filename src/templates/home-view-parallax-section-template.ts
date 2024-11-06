@@ -1,12 +1,17 @@
+import { Locales } from "../model/locales-query.types";
 import { html, until, TemplateResult } from "../lib";
 
 export const homeViewParallaxSectionTemplate = (
-    homeViewHistoricalFigureCards: TemplateResult
+    homeViewHistoricalFigureCards: TemplateResult,
+    i18nText: Locales,
+    lang: string | null
 ): TemplateResult => html`
     <div class="parallax-container" id="parallax-container">
         <div class="parallax-overlay" id="parallaxOverlay">
             <div id="parallaxOverlayTitle" class="parallax-overlay-title">
-                <h2>Добре дошли в Първокласно българско училище!</h2>
+                <h2 data-i18n="home.parallax-title">
+                    ${lang ? i18nText[lang]["home"]["parallax-title"] : null}
+                </h2>
             </div>
 
             <img

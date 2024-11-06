@@ -17,6 +17,11 @@ export const homeViewHistoricalFigureCardTemplate = (
       />
     </div>
     <div class="historical-figure-data">
-      <h1 class="name">${historicalFigureData[`name_${lang}`]}</h1>
+      <h1
+        class="name"
+        data-i18n="home.parallax-historical-figures.parallax-historical-figure-${historicalFigureData.objectId}"
+      >
+        ${historicalFigureData[`name_${lang}`]}
+      </h1>
     </div>
   </a>`;
