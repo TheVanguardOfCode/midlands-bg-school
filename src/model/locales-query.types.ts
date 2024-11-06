@@ -1,5 +1,1 @@
-export type Locales = {
-    [locale: string]: {
-      [key: string]: string;
-    };
-  };
+export type Locales = { [key: string]: any };

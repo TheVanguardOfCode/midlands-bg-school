@@ -1,7 +1,7 @@
 export const getLocalStorageData = (dataKey: string): string | null => {
     const dataJson: string | null = localStorage.getItem(dataKey);
     if (dataJson) {
-        return dataJson;
+        return JSON.parse(dataJson);
     }
     return null;
 };
@@ -11,5 +11,5 @@ export const setLocalStorageData = (dataKey: string, dataValue: any): void => {
 };
 
 export const removeLocalStorageData = (dataKey: string): void => {
-    sessionStorage.removeItem(dataKey);
+    localStorage.removeItem(dataKey);
 };

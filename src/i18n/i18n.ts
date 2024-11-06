@@ -21,7 +21,6 @@ const detectLanguage = (): AvailableLocales => {
     const langFromSettings = (
         navigator.language || (navigator as NavigatorExtend).userLanguage
     ).slice(0, 2) as string;
-
     if (isValidLocale(langFromUrl)) {
         return langFromUrl;
     } else if (isValidLocale(langFromLocalStorage)) {
