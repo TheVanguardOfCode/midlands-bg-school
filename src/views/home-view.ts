@@ -1,5 +1,6 @@
 import { html, until, TemplateResult } from "../lib";
 import { fetchLocale } from "../i18n/fetch-locale";
+import { availableLocales, locales } from "../utils/i18n-util";
 import { Context } from "../model/page-ctx.types";
 import { ParallaxThemesData } from "../model/available-parallax-themes";
 import { HistoricalFigureData } from "../model/available-historical-figure";
@@ -10,76 +11,88 @@ const mockData: HistoricalFigureData = {
     results: [
         {
             objectId: "1",
-            name_bg: "Hristo Botev1",
+            name_en: "Hristo Botev1",
+            name_bg: "Христо Ботев1",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "2",
-            name_bg: "Hristo Botev2",
+            name_en: "Hristo Botev2",
+            name_bg: "Христо Ботев2",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "3",
-            name_bg: "Hristo Botev3",
+            name_en: "Hristo Botev3",
+            name_bg: "Христо Ботев3",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "4",
-            name_bg: "Hristo Botev4",
+            name_en: "Hristo Botev4",
+            name_bg: "Христо Ботев4",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "5",
-            name_bg: "Hristo Botev5",
+            name_en: "Hristo Botev5",
+            name_bg: "Христо Ботев5",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "6",
-            name_bg: "Hristo Botev6",
+            name_en: "Hristo Botev6",
+            name_bg: "Христо Ботев6",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "7",
-            name_bg: "Hristo Botev7",
+            name_en: "Hristo Botev7",
+            name_bg: "Христо Ботев7",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "8",
-            name_bg: "Hristo Botev8",
+            name_en: "Hristo Botev8",
+            name_bg: "Христо Ботев8",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "9",
-            name_bg: "Hristo Botev9",
+            name_en: "Hristo Botev9",
+            name_bg: "Христо Ботев9",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
         {
             objectId: "10",
-            name_bg: "Hristo Botev10",
+            name_en: "Hristo Botev10",
+            name_bg: "Христо Ботев10",
             hrefInfo: "https://www.wikipedia.org/",
             hrefImg:
                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
         },
     ],
 };
+
+const targetElement = document.querySelector("html") as HTMLElement;
 
 const initParallax = async () => {
     // Parallax Script
@@ -105,7 +118,6 @@ const initParallax = async () => {
         "parallax-themes-data"
     );
 
-    const targetElement = document.querySelector("html") as HTMLElement;
     const setParallaxImgLinks = () => {
         const currentTheme: string | null = targetElement.getAttribute("theme");
         if (currentTheme) {
@@ -247,7 +259,8 @@ const initParallax = async () => {
     });
     // End Parallax Script
 };
-const loadHomeViewParallaxSection = () => {
+const loadHomeViewParallaxSection = (ctx: Context) => {
+    const currentLang: string | null = targetElement.getAttribute("lang");
     const data = mockData.results;
     const totalHistoricalFigures = 5;
     let currentTemplate = null;
@@ -268,29 +281,43 @@ const loadHomeViewParallaxSection = () => {
             { side: "right", row: "second" },
             { side: "center", row: "third" },
         ];
+
+        for (const locale of availableLocales) {
+            ctx.i18nText[locale]["home"]["parallax-historical-figures"] = {};
+        }
+
         const cards = historicalFiguresData.map(
             (historicalFigureData: any, index) => {
+                for (const locale of availableLocales) {
+                    ctx.i18nText[locale]["home"]["parallax-historical-figures"][
+                        `parallax-historical-figure-${historicalFigureData.objectId}`
+                    ] = `${historicalFigureData[`name_${locale}`]}`;
+                }
                 historicalFigureData.side =
                     historicalFiguresPositions[index].side;
                 historicalFigureData.row =
                     historicalFiguresPositions[index].row;
                 return homeViewHistoricalFigureCardTemplate(
                     historicalFigureData,
-                    "bg"
+                    currentLang
                 );
             }
         );
         currentTemplate = html` ${cards} `;
     }
 
-    return homeViewParallaxSectionTemplate(currentTemplate);
+    return homeViewParallaxSectionTemplate(
+        currentTemplate,
+        ctx.i18nText,
+        currentLang
+    );
 };
 
 export const homeView = async (ctx: Context) => {
     const homeViewParallaxSection: TemplateResult =
-        loadHomeViewParallaxSection();
+        loadHomeViewParallaxSection(ctx);
 
     ctx.render(homeViewTemplate(homeViewParallaxSection));
     await initParallax();
-    console.log(ctx.i18nText.bg.header);
+    console.log(ctx.i18nText);
 };
