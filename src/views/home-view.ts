@@ -1,6 +1,6 @@
-import { html, until, TemplateResult } from "../lib";
+import { html, TemplateResult } from "../lib";
 import { fetchLocale } from "../i18n/fetch-locale";
-import { availableLocales, locales } from "../utils/i18n-util";
+import { availableLocales } from "../utils/i18n-util";
 import { Context } from "../model/page-ctx.types";
 import { ParallaxThemesData } from "../model/available-parallax-themes";
 import { HistoricalFigureData } from "../model/available-historical-figure";
@@ -287,7 +287,7 @@ const loadHomeViewParallaxSection = (ctx: Context) => {
         }
 
         const cards = historicalFiguresData.map(
-            (historicalFigureData: any, index) => {
+            (historicalFigureData, index) => {
                 for (const locale of availableLocales) {
                     ctx.i18nText[locale]["home"]["parallax-historical-figures"][
                         `parallax-historical-figure-${historicalFigureData.objectId}`
