@@ -1,0 +1,41 @@
+{
+    "links": [
+        {
+            "isDropdown": false,
+            "dataI18n": "header.nav-link-1"
+        },
+        {
+            "isDropdown": true,
+            "dataI18n": "header.nav-link-2",
+            "dropdownLinks": [
+                { "dataI18n": "header.dropdown-link-2-1" },
+                { "dataI18n": "header.dropdown-link-2-2" },
+                { "dataI18n": "header.dropdown-link-2-3" },
+                { "dataI18n": "header.dropdown-link-2-4" },
+                { "dataI18n": "header.dropdown-link-2-5" },
+                { "dataI18n": "header.dropdown-link-2-6" },
+                { "dataI18n": "header.dropdown-link-2-7" }
+            ]
+        },
+        {
+            "isDropdown": true,
+            "dataI18n": "header.nav-link-3",
+            "dropdownLinks": [
+                { "dataI18n": "header.dropdown-link-3-1" },
+                { "dataI18n": "header.dropdown-link-3-2" }
+            ]
+        },
+        {
+            "isDropdown": true,
+            "dataI18n": "header.nav-link-4",
+            "dropdownLinks": [
+                { "dataI18n": "header.dropdown-link-4-1" },
+                { "dataI18n": "header.dropdown-link-4-2" }
+            ]
+        },
+        {
+            "isDropdown": false,
+            "dataI18n": "header.nav-link-5"
+        }
+    ]
+}
