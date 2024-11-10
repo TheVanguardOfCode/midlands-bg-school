@@ -1,4 +1,4 @@
-import { html, until, TemplateResult } from "../lib";
+import { html, TemplateResult } from "../lib";
 import { fetchLocale } from "../i18n/fetch-locale";
 import { Context } from "../model/page-ctx.types";
 import { ParallaxThemesData } from "../model/available-parallax-themes";
@@ -269,7 +269,7 @@ const loadHomeViewParallaxSection = () => {
             { side: "center", row: "third" },
         ];
         const cards = historicalFiguresData.map(
-            (historicalFigureData: any, index) => {
+            (historicalFigureData, index) => {
                 historicalFigureData.side =
                     historicalFiguresPositions[index].side;
                 historicalFigureData.row =
