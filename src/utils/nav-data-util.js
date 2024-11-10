@@ -1,6 +1,5 @@
 import { fetchLocale } from "../i18n/fetch-locale.js";
-// Type guard to validate the structure of navData
-function isNavData(data) {
+const isNavData = (data) => {
   return (
     typeof data === "object" &&
     data !== null &&
@@ -17,7 +16,7 @@ function isNavData(data) {
           : true),
     )
   );
-}
+};
 export const getNavData = async () => {
   const data = await fetchLocale("nav-data");
   if (isNavData(data)) {

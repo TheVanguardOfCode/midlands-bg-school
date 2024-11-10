@@ -1,8 +1,7 @@
 import { fetchLocale } from "../i18n/fetch-locale";
 import { NavData } from "../model/nav-data.types";
 
-// Type guard to validate the structure of navData
-function isNavData(data: unknown): data is NavData {
+const isNavData = (data: unknown): data is NavData => {
     return (
         typeof data === "object" &&
         data !== null &&
@@ -19,7 +18,7 @@ function isNavData(data: unknown): data is NavData {
                     : true)
         )
     );
-}
+};
 
 export const getNavData: () => Promise<NavData> = async () => {
     const data = (await fetchLocale("nav-data")) as unknown;
