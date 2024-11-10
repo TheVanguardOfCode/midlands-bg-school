@@ -1,6 +1,7 @@
+import { HistoricalFigure } from "../model/available-historical-figure";
 import { html, TemplateResult } from "../lib";
 export const homeViewHistoricalFigureCardTemplate = (
-    historicalFigureData: any,
+    historicalFigureData: HistoricalFigure,
     lang: string | null
 ): TemplateResult =>
     html` <a
