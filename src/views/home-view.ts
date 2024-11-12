@@ -3,94 +3,99 @@ import { fetchLocale } from "../i18n/fetch-locale";
 import { availableLocales } from "../utils/i18n-util";
 import { Context } from "../model/page-ctx.types";
 import { ParallaxThemesData } from "../model/available-parallax-themes";
-import { HistoricalFigureData } from "../model/available-historical-figure";
+import {
+    HistoricalFiguresData,
+    HistoricalFigureElement,
+} from "../model/available-historical-figure";
+import { getHistoricalFiguresData } from "../services/historical-figures-service";
 import { homeViewTemplate } from "../templates/home-view-template";
 import { homeViewParallaxSectionTemplate } from "../templates/home-view-parallax-section-template";
 import { homeViewHistoricalFigureCardTemplate } from "../templates/home-view-historical-figure-card-template";
-const mockData: HistoricalFigureData = {
-    results: [
-        {
-            objectId: "1",
-            name_en: "Hristo Botev1",
-            name_bg: "Христо Ботев1",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "2",
-            name_en: "Hristo Botev2",
-            name_bg: "Христо Ботев2",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "3",
-            name_en: "Hristo Botev3",
-            name_bg: "Христо Ботев3",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "4",
-            name_en: "Hristo Botev4",
-            name_bg: "Христо Ботев4",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "5",
-            name_en: "Hristo Botev5",
-            name_bg: "Христо Ботев5",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "6",
-            name_en: "Hristo Botev6",
-            name_bg: "Христо Ботев6",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "7",
-            name_en: "Hristo Botev7",
-            name_bg: "Христо Ботев7",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "8",
-            name_en: "Hristo Botev8",
-            name_bg: "Христо Ботев8",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "9",
-            name_en: "Hristo Botev9",
-            name_bg: "Христо Ботев9",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-        {
-            objectId: "10",
-            name_en: "Hristo Botev10",
-            name_bg: "Христо Ботев10",
-            hrefInfo: "https://www.wikipedia.org/",
-            hrefImg:
-                "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
-        },
-    ],
-};
+
+// {
+//     results: [
+//         {
+//             objectId: "1",
+//             name_en: "Hristo Botev1",
+//             name_bg: "Христо Ботев1",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "2",
+//             name_en: "Hristo Botev2",
+//             name_bg: "Христо Ботев2",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "3",
+//             name_en: "Hristo Botev3",
+//             name_bg: "Христо Ботев3",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "4",
+//             name_en: "Hristo Botev4",
+//             name_bg: "Христо Ботев4",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "5",
+//             name_en: "Hristo Botev5",
+//             name_bg: "Христо Ботев5",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "6",
+//             name_en: "Hristo Botev6",
+//             name_bg: "Христо Ботев6",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "7",
+//             name_en: "Hristo Botev7",
+//             name_bg: "Христо Ботев7",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "8",
+//             name_en: "Hristo Botev8",
+//             name_bg: "Христо Ботев8",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "9",
+//             name_en: "Hristo Botev9",
+//             name_bg: "Христо Ботев9",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//         {
+//             objectId: "10",
+//             name_en: "Hristo Botev10",
+//             name_bg: "Христо Ботев10",
+//             hrefInfo: "https://www.wikipedia.org/",
+//             hrefImg:
+//                 "https://res.cloudinary.com/dmm0gmxdr/image/upload/v1729016464/First-Class-Bg-School/home/historical-figures/hristo-botev_jjpusp.png",
+//         },
+//     ],
+// };
 
 const targetElement = document.querySelector("html") as HTMLElement;
 
@@ -162,22 +167,12 @@ const initParallax = async () => {
         third: 1.4,
     };
 
-    const historicalFigures = Array.from(
+    const historicalFiguresElements = Array.from(
         parallaxOverlay.getElementsByClassName("historical-figure")
     ) as HTMLElement[];
 
-    interface HistoricalFigure {
-        el: HTMLElement;
-        elStartingOffsetTop: number;
-        elStartingOffsetLeft: number;
-        elStartingOffsetWidth: number;
-        elPerantWidth: number;
-        side: string | null;
-        row: string | null;
-    }
-
-    const historicalFiguresMapper: HistoricalFigure[] = historicalFigures.map(
-        (el) => ({
+    const historicalFiguresMapper: HistoricalFigureElement[] =
+        historicalFiguresElements.map((el) => ({
             el: el,
             elStartingOffsetTop: el.offsetTop,
             elStartingOffsetLeft: el.offsetLeft,
@@ -185,8 +180,7 @@ const initParallax = async () => {
             elPerantWidth: parallaxOverlay.offsetWidth,
             side: el.getAttribute("side"),
             row: el.getAttribute("row"),
-        })
-    );
+        }));
 
     const currentBottomSun =
         parallaxBackground.offsetHeight - sun.offsetTop - sun.offsetHeight;
@@ -259,9 +253,12 @@ const initParallax = async () => {
     });
     // End Parallax Script
 };
-const loadHomeViewParallaxSection = (ctx: Context) => {
+const loadHomeViewParallaxSection = (
+    ctx: Context,
+    historicalFiguresData: HistoricalFiguresData
+) => {
     const currentLang: string | null = targetElement.getAttribute("lang");
-    const data = mockData.results;
+    const data = historicalFiguresData.results;
     const totalHistoricalFigures = 5;
     let currentTemplate = null;
     if (data.length < totalHistoricalFigures) {
@@ -314,8 +311,12 @@ const loadHomeViewParallaxSection = (ctx: Context) => {
 };
 
 export const homeView = async (ctx: Context) => {
-    const homeViewParallaxSection: TemplateResult =
-        loadHomeViewParallaxSection(ctx);
+    const historicalFiguresData: HistoricalFiguresData =
+        await getHistoricalFiguresData();
+    const homeViewParallaxSection: TemplateResult = loadHomeViewParallaxSection(
+        ctx,
+        historicalFiguresData
+    );
 
     ctx.render(homeViewTemplate(homeViewParallaxSection));
     await initParallax();
