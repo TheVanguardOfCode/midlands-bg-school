@@ -123,7 +123,7 @@ const initParallax = async () => {
   });
   // End Parallax Script
   // Info Script
-  function startTime() {
+  const startTime = () => {
     const checkTime = (i) => {
       return i < 10 ? "0" + i : i.toString();
     };
@@ -158,7 +158,7 @@ const initParallax = async () => {
     const date = `${curWeekDay}, ${curDay} ${curMonth} ${curYear}`;
     document.getElementById("date").innerHTML = date;
     setTimeout(startTime, 500);
-  }
+  };
   startTime();
   // End Info Scriipt
 };

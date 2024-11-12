@@ -168,7 +168,7 @@ const initParallax = async () => {
     });
     // End Parallax Script
     // Info Script
-    function startTime(): void {
+    const startTime = (): void => {
         const checkTime = (i: number): string => {
             return i < 10 ? "0" + i : i.toString();
         };
@@ -218,7 +218,7 @@ const initParallax = async () => {
         (document.getElementById("date") as HTMLElement).innerHTML = date;
 
         setTimeout(startTime, 500);
-    }
+    };
 
     startTime();
 
